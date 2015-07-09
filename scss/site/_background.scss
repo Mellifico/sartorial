@@ -1,0 +1,120 @@
+.bg-light {background-color:$base3;}
+.bg-light-min {background-color:$base2;}
+.bg-dark {background-color:$base03;}
+.bg-red {background-color:$red;}
+.bg-yellow {background-color:$yellow;}
+.bg-orange {background-color:$orange;}
+.bg-blue {background-color:$blue;}
+.bg-violet {background-color:$violet;}
+.bg-magenta {background-color:$magenta;}
+.bg-green {background-color:$green;}
+.bg-cyan {background-color:$cyan;}
+
+/*! suit-flex-embed v1.4.0 | MIT License | github.com/suitcss */
+
+.FlexEmbed {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index:0;
+}
+
+.FlexEmbed:before {
+  content: "";
+  display: block;
+  width: 100%;
+}
+
+.FlexEmbed--1by3:before {
+  padding-bottom: 120%;
+}
+.FlexEmbed--1by4:before {
+  padding-bottom: 150%;
+}
+.FlexEmbed--3by1:before {
+  padding-bottom: 33.33333%;
+}
+.FlexEmbed--4by1:before {
+  padding-bottom: 22%;
+}
+.FlexEmbed--5by1:before {
+  padding-bottom: 15%;
+}
+.FlexEmbed--2by1:before {
+  padding-bottom: 50%;
+}
+
+.FlexEmbed--16by9:before {
+  padding-bottom: 56.25%;
+}
+
+.FlexEmbed--4by3:before {
+  padding-bottom: 75%;
+}
+
+.FlexEmbed--4by4:before {
+  padding-bottom: 100%;
+}
+/**
+ * Requires: suitcss/flex-embed
+ */
+
+.CoverImage {
+  background-position: 50%;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  -webkit-background-size:  cover;
+       -o-background-size:  cover;
+          background-size:  cover;
+}
+.bg-fixed {
+background-attachment: fixed;
+}
+.bg-anim-gradient-a {
+ background: linear-gradient(142deg, #fdf6e3, scale-color($yellow, $lightness: 75%), #eee8d5);
+background-size: 600% 600%;
+
+-webkit-animation: anim-gradient-a 22s ease infinite;
+-moz-animation: anim-gradient-a 22s ease infinite;
+-o-animation: anim-gradient-a 22s ease infinite;
+animation: anim-gradient-a 22s ease infinite;
+}
+@-webkit-keyframes anim-gradient-a {
+    0%{background-position:24% 0%}
+    50%{background-position:77% 100%}
+    100%{background-position:24% 0%}
+}
+@-moz-keyframes anim-gradient-a {
+    0%{background-position:24% 0%}
+    50%{background-position:77% 100%}
+    100%{background-position:24% 0%}
+}
+@-o-keyframes anim-gradient-a {
+    0%{background-position:24% 0%}
+    50%{background-position:77% 100%}
+    100%{background-position:24% 0%}
+}
+@keyframes anim-gradient-a {
+    0%{background-position:24% 0%}
+    50%{background-position:77% 100%}
+    100%{background-position:24% 0%}
+}
+// gradients patterns tricks
+
+.pattern-cube {
+background-color:transparent;
+background-image: linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+background-image: -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -webkit-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+background-image: -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -moz-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+background-image: -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -o-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+background-image: linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
+linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
+linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
+linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
+linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow),
+linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+-webkit-background-size:80px 140px;
+     -o-background-size:80px 140px;
+        background-size:80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
