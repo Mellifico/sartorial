@@ -88,57 +88,29 @@ $include-html-global-classes: $include-html-classes;
 
 /* Typographie --------------------------------------------------------------------------------------------------------------------*/
 
-@font-face {
-  font-family: 'calendas-regular';
-  src: url('../fontes/calendas_plus.eot');
-  src: local('?'),
-    url("../fontes/calendas_plus.woff") format("woff"),
-    url("../fontes/calendas_plus.otf") format("opentype"),
-    url("../fontes/calendas_plus.svg#calendas") format("svg");
-     font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-  font-family: 'calendas-bold';
-  src: url('../fontes/calendas_plus_bold.eot');
-  src: local('?'),
-    url("../fontes/calendas_plus_bold.woff") format("woff"),
-    url("../fontes/calendas_plus_bold.otf") format("opentype"),
-    url("../fontes/calendas_plus_bold.svg#calendas") format("svg");
-     font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-  font-family: 'calendas-italic';
-  src: url('../fontes/calendas_plus_italic.eot');
-  src: local('?'),
-    url("../fontes/calendas_plus_italic.woff") format("woff"),
-    url("../fontes/calendas_plus_italic.otf") format("opentype"),
-    url("../fontes/calendas_plus_italic.svg#calendas") format("svg");
-     font-weight: normal;
-    font-style: normal;
-  }
+
+@import url(http://fonts.googleapis.com/css?family=EB+Garamond&subset=latin,latin-ext);
 
 // We use these to define default font stacks
 $font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-$font-family-serif: calendas-regular, Georgia, Cambria, "Times New Roman", Times, serif;
-$font-family-serif-bold: calendas-bold, Georgia, Cambria, "Times New Roman", Times, serif;
-$font-family-serif-italic: calendas-italic, Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-serif: 'EB Garamond',Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+$font-family-serif-bold: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
+$font-family-serif-italic: Garamond,Baskerville,Baskerville Old Face,Hoefler Text,Times New Roman,serif;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
 // $font-weight-normal: normal !default;
 // $font-weight-bold: bold !default;
 
-// COLORS Solarized
-$base03:    #002b36;
+
+$base03:    #000046;
 $base02:    #073642;
 $base01:    #586e75;
 $base00:    #657b83;
 $base0:     #839496;
 $base1:     #93a1a1;
-$base2:     #eee8d5;
-$base3:     #fdf6e3;
+$base2:     #F7F4F0;
+$base3:     #f4f4f4;
 $yellow:    #b58900;
 $orange:    #cb4b16;
 $red:       #dc322f;
@@ -179,7 +151,7 @@ $info-color: $yellow;
 
 // We use these to control various global styles
 $body-bg: $base2;
-$body-font-color: $base02;
+$body-font-color: $base03;
 $body-font-family: $font-family-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -252,7 +224,7 @@ $body-font-family: $font-family-serif;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-$header-font-color: $base01;
+$header-font-color: $base03;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
