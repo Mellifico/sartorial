@@ -33,7 +33,6 @@ $container.imagesLoaded( function() {
   	itemSelector: '.item'
   });
 });
-
 // magnific popup
 $('.galerie').magnificPopup({
   delegate: 'a', // child items selector, by clicking on it popup will open

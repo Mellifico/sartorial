@@ -95,3 +95,7 @@ a {
 .textshadow-basic {
   text-shadow: -1px -1px 1px $base3, 1px 1px 1px $base02;
 }
+.item img {
+  width: 100%;
+  max-width: 100%;
+}

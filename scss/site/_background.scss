@@ -2,7 +2,7 @@
 .bg-light-min {background-color:$base2;}
 .bg-dark {background-color:$base03;}
 .bg-red {background-color:$red;}
-.bg-yellow {background-color:$yellow;}
+.bg-base03 {background-color:$base03;}
 .bg-orange {background-color:$orange;}
 .bg-blue {background-color:$blue;}
 .bg-violet {background-color:$violet;}
@@ -75,7 +75,7 @@
 background-attachment: fixed;
 }
 .bg-anim-gradient-a {
- background: linear-gradient(142deg, #fdf6e3, scale-color($yellow, $lightness: 75%), #eee8d5);
+ background: linear-gradient(142deg, $base2, scale-color($base03, $lightness: 90%), $base2);
 background-size: 600% 600%;
 
 -webkit-animation: anim-gradient-a 22s ease infinite;
@@ -107,16 +107,16 @@ animation: anim-gradient-a 22s ease infinite;
 
 .pattern-cube {
 background-color:transparent;
-background-image: linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
-background-image: -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -webkit-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
-background-image: -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -moz-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
-background-image: -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow), -o-linear-gradient(30deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+background-image: linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), linear-gradient(60deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03), linear-gradient(60deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03);
+background-image: -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -webkit-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03), -webkit-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03);
+background-image: -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -moz-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03), -moz-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03);
+background-image: -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(60deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(300deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3), -o-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03), -o-linear-gradient(30deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03);
 background-image: linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
 linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
 linear-gradient(30deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
 linear-gradient(150deg, $base3 12%, transparent 12.5%, transparent 87%, $base3 87.5%, $base3),
-linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow),
-linear-gradient(60deg, $yellow 25%, transparent 25.5%, transparent 75%, $yellow 75%, $yellow);
+linear-gradient(60deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03),
+linear-gradient(60deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 75%, $base03);
 -webkit-background-size:80px 140px;
      -o-background-size:80px 140px;
         background-size:80px 140px;

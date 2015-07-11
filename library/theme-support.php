@@ -20,6 +20,32 @@ function FoundationPress_theme_support() {
 
 add_action('after_setup_theme', 'FoundationPress_theme_support');
 
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = 'Seals';
+    $submenu['edit.php'][5][0] = 'Seals';
+    $submenu['edit.php'][10][0] = 'Add Seals';
+    echo '';
+}
+
+function change_post_object_label() {
+        global $wp_post_types;
+        $labels = &$wp_post_types['post']->labels;
+        $labels->name = 'Seals';
+        $labels->singular_name = 'Seal';
+        $labels->add_new = 'Add Seal';
+        $labels->add_new_item = 'Add Seal';
+        $labels->edit_item = 'Edit Seals';
+        $labels->new_item = 'Seal';
+        $labels->view_item = 'View Seal';
+        $labels->search_items = 'Search Seals';
+        $labels->not_found = 'No Seals found';
+        $labels->not_found_in_trash = 'No Seals found in Trash';
+    }
+    add_action( 'init', 'change_post_object_label' );
+    add_action( 'admin_menu', 'change_post_menu_label' );
+
 // Register Custom Post Type
 function custom_post_type() {
 

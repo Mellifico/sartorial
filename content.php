@@ -7,27 +7,14 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class('row'); ?>>
-
-<div class="medium-4 large-4 columns">
+<article id="post-<?php the_ID(); ?>" <?php post_class('small-6 medium-4 large-4 columns'); ?>>
+<header>
 			<?php if ( has_post_thumbnail() ): ?>
 				<?php the_post_thumbnail(); ?>
 			<?php elseif ( !has_post_thumbnail() ): ?>
 				<?php lorempixel(); ?>
 			<?php endif; ?>
-</div>
-<div class="medium-8 large-8 columns bg-light">
-		<header>
-		<h2 class="uppercase ligatures"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-		<?php FoundationPress_entry_meta(); ?>
+		<h2 class="text-center"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 	</header>
-	<div  class="entry-content">
-		<?php the_excerpt(); ?>
-	</div>
-	<footer>
-		<?php $tag = get_the_tags(); if (!$tag) { } else { ?><p><?php the_tags(); ?></p><?php } ?>
-	</footer>
-	</div>
-
 </article>
 
