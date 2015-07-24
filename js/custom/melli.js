@@ -35,7 +35,7 @@ $container.imagesLoaded( function() {
 });
 // magnific popup
 $('.galerie').magnificPopup({
-  delegate: 'a', // child items selector, by clicking on it popup will open
+  delegate: 'a:not(.button)', // child items selector, by clicking on it popup will open
   type: 'image',
     gallery:{
     enabled:true

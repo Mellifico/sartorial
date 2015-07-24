@@ -1,13 +1,3 @@
-    <?php
-    if (in_category('portrait-layout')) {
-    include 'single-portrait.php';
-    } elseif (in_category('landscape-layout')) {
-    include 'single-landscape.php';
-    } elseif (in_category('mix-layout')) {
-    include 'single-mix.php';
-    } else {
-    ?>
-
 <?php get_header(); ?>
 
 <div role="main">	
@@ -40,7 +30,7 @@
 		?>
 
 <div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);" >
-<figure class="logotype"><?php the_post_thumbnail('medium'); ?></figure>
+<figure class="centered"><?php the_post_thumbnail('medium'); ?></figure>
 </div>
 
 
@@ -53,10 +43,7 @@
 			</div>
 			</header>
 <?php do_action('foundationPress_post_before_entry_content'); ?>
-
-				<div class="row">
-				<div class="large-12 columns">
-				<?php 
+						<?php 
 				$args = array(
 					'orderby'          => 'rand',
 					'post_type'      => 'attachment',
@@ -73,6 +60,11 @@
 				            ),
 				);
 				$attachments = get_posts($args);
+				?>
+				<div class="row">
+				<div class="large-12 columns">
+
+				<?php
 				if ($attachments) {
 					foreach ($attachments as $attachment) {
 						$item_th = wp_get_attachment_image_src($attachment->ID,'large');
@@ -87,7 +79,7 @@
 
 						$postparent_title = apply_filters('the_title', $attachment->post_parent -> post_title);
 
-						echo '<figure id="item-'.$attachment->ID.'">';
+						echo '<figure id="item-'.$attachment->ID.'"';
 						echo '<a href="'.$item_full[0].'">';
 						echo '<img src="';
 						echo $item_th[0];
@@ -126,4 +118,3 @@
 
 
 <?php get_footer(); ?>
-<?php } ?>

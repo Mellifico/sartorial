@@ -231,12 +231,12 @@ $header-font-color: $base03;
 // $header-text-rendering: optimizeLegibility;
 
 // We use these to control header font sizes
-// $h1-font-size: rem-calc(44);
-// $h2-font-size: rem-calc(37);
-// $h3-font-size: rem-calc(27);
-// $h4-font-size: rem-calc(23);
-// $h5-font-size: rem-calc(18);
-// $h6-font-size: 1rem;
+$h1-font-size: rem-calc(66);
+$h2-font-size: rem-calc(54);
+$h3-font-size: rem-calc(44);
+$h4-font-size: rem-calc(34);
+$h5-font-size: rem-calc(27);
+$h6-font-size: 1.75rem;
 
 // We use these to control header size reduction on small screens
 // $h1-font-reduction: rem-calc(10) !default;
@@ -260,7 +260,7 @@ $small-font-color: scale-color($header-font-color, $lightness: 15%);
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
 // $paragraph-font-weight: $font-weight-normal;
-// $paragraph-font-size: 1rem;
+$paragraph-font-size: 1.5rem;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: rem-calc(20);
 // $paragraph-aside-font-size: rem-calc(14);
@@ -279,7 +279,7 @@ $small-font-color: scale-color($header-font-color, $lightness: 15%);
 // $code-padding: rem-calc(2) rem-calc(5) rem-calc(1);
 
 // We use these to style anchors
-$anchor-text-decoration: underline;
+$anchor-text-decoration: none;
 $anchor-text-decoration-hover: none;
 $anchor-font-color: inherit;
 $anchor-font-color-hover: scale-color($success-color, $lightness: -14%);
@@ -295,7 +295,7 @@ $anchor-font-color-hover: scale-color($success-color, $lightness: -14%);
 // $list-font-size: $paragraph-font-size;
 // $list-line-height: $paragraph-line-height;
 // $list-margin-bottom: $paragraph-margin-bottom;
-// $list-style-position: outside;
+$list-style-position: inside;
 // $list-side-margin: 1.1rem;
 // $list-ordered-side-margin: 1.4rem;
 // $list-side-margin-no-bullet: 0;
@@ -1349,9 +1349,9 @@ $label-font-family: $font-family-sans-serif;
 // We use these to control border styles
 // $thumb-border-style: solid;
 // $thumb-border-width: 4px;
-// $thumb-border-color: $white;
+$thumb-border-color: $base02;
 // $thumb-box-shadow: 0 0 0 1px rgba($black,.2);
-// $thumb-box-shadow-hover: 0 0 6px 1px rgba($primary-color,0.5);
+// $thumb-box-shadow-hover: 0 0 6px 1px rgba($thumb-border-color,0.5);
 
 // Radius and transition speed for thumbs
 // $thumb-radius: $global-radius;

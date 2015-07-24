@@ -2,12 +2,8 @@
 <?php do_action('foundationPress_before_content'); ?>
 <div class="wrapper brand">
 <div class="row">
-
-<div class="medium-4 large-4 columns"></div>
-
-<div class="medium-8 large-8 columns">
-<h1><small><?php bloginfo( 'name' ); ?></small></h1>
-<h2 class="smallcaps"><small><?php bloginfo( 'description' ); ?></small></h2>
+<div class="large-12 columns">
+<h1><small><a class="outline" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?> <?php bloginfo('description'); ?></a></small></h1>
 </div>
 
 </div>
@@ -50,26 +46,27 @@
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'inherit',
-    'numberposts' => 24,
+    'numberposts' => 96,
     'orderby' => 'rand',
     	'tax_query'	=> array(
-        array(
+    	        array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => array('logotypes', 'covers'), // exclude media posts in the news-cat custom taxonomy
-            'operator'  => 'NOT IN')
+            'terms'     => 'details',
+            'operator'  => 'IN')
             ),
 );  
 
 $attachments = get_posts($args);
 ?>
-<div class="row">
+
 <div id="msnry-gallery">
 <?php 
 if ($attachments) {
     foreach ($attachments as $attachment) {
 	$img = wp_get_attachment_thumb_url($attachment->ID);
 	$title = get_the_title($attachment->post_parent);
+	$attimg_th   = wp_get_attachment_image_src($attachment->ID,'thumbnail');
 	$attimg_medium   = wp_get_attachment_image_src($attachment->ID,'medium');
        $attimg_large   = wp_get_attachment_image_src($attachment->ID,'large');
        $attimg_full   = wp_get_attachment_image_src($attachment->ID,'full');
@@ -78,16 +75,13 @@ if ($attachments) {
 
 	$atttitle = apply_filters('the_title',$attachment->post_title);
 
-        echo '<figure class="item galerie small-6 medium-3 large-3">';
+        echo '<figure class="item galerie small-6 medium-2 large-1">';
         echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
-       echo '<figcaption class="text-center">';
-        echo '<span>'.$atttitle.'</span>';
-        echo '</figcaption>';
         echo '</figure>';
     }   
 } ?>
 </div>
-</div>
+
 </div>
 <?php do_action('foundationPress_after_content'); ?>
 </div>

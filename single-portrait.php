@@ -1,14 +1,5 @@
-    <?php
-    if (in_category('portrait-layout')) {
-    include 'single-portrait.php';
-    } elseif (in_category('landscape-layout')) {
-    include 'single-landscape.php';
-    } elseif (in_category('mix-layout')) {
-    include 'single-mix.php';
-    } else {
-    ?>
-
 <?php get_header(); ?>
+
 
 <div role="main">	
 
@@ -39,24 +30,23 @@
 		}
 		?>
 
-<div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);" >
-<figure class="logotype"><?php the_post_thumbnail('medium'); ?></figure>
+<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
+
+<div class="wrapper">
+
+<header>
+
+<div class="row">
+<img src="<?php echo $attcover_full[0]; ?>" alt="" />
+<div class="large-12 columns">
+
+<h1 class="uppercase"><?php the_title(); ?></h1>
+<?php the_content(); ?>
+<figure><?php the_post_thumbnail('full'); ?></figure>
 </div>
-
-
-		<article <?php post_class('wrapper') ?> id="post-<?php the_ID(); ?>">
-		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
-			<header class="row">
-			<div class="large-12 columns">
-
-			<?php the_content(); ?>
-			</div>
-			</header>
-<?php do_action('foundationPress_post_before_entry_content'); ?>
-
-				<div class="row">
-				<div class="large-12 columns">
-				<?php 
+</div>
+</header>
+			<?php 
 				$args = array(
 					'orderby'          => 'rand',
 					'post_type'      => 'attachment',
@@ -85,30 +75,26 @@
 						$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
 						$img_title = apply_filters('the_title', $attachment->post_title);
 
-						$postparent_title = apply_filters('the_title', $attachment->post_parent -> post_title);
-
-						echo '<figure id="item-'.$attachment->ID.'">';
-						echo '<a href="'.$item_full[0].'">';
+						echo '<figure id="item-'.$attachment->ID.'" class="galerie row">';
+						echo '<a class="large-6 columns" href="'.$item_full[0].'">';
 						echo '<img src="';
 						echo $item_th[0];
 						echo '" alt="'.$img_title.'"/></a>';
 						
+						echo '<figcaption class="large-6 columns">';
+						echo '<h2>'.apply_filters('the_title', $attachment->post_title).'</h2>';
 						if ($detail1_th) {echo '<a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a>'; }
 						if ($detail2_th) {echo '<a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a>'; }
 						if ($detail3_th) {echo '<a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a>'; }
-						
-						echo '<figcaption>';
-						echo '<h2>'.apply_filters('the_title', $attachment->post_title).'</h2>';
 						echo apply_filters('the_title', $attachment->post_content);
 						echo '</figcaption>';
 						echo '</figure>';
 					}
 				}
 				?>
-				</div>
-				</div>
+				
 
-			
+			</div>
 			<footer>
 				<?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'FoundationPress'), 'after' => '</p></nav>' )); ?>
 				
@@ -123,7 +109,4 @@
 
 	
 </div>
-
-
 <?php get_footer(); ?>
-<?php } ?>
