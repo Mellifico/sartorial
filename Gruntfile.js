@@ -51,7 +51,7 @@ module.exports = function(grunt) {
           'bower_components/foundation/js/foundation/foundation.interchange.js',
           'bower_components/foundation/js/foundation/foundation.joyride.js',
           'bower_components/foundation/js/foundation/foundation.magellan.js',
-          'bower_components/foundation/js/foundation/foundation.offcanvas.js',
+          // 'bower_components/foundation/js/foundation/foundation.offcanvas.js',
           'bower_components/foundation/js/foundation/foundation.orbit.js',
           'bower_components/foundation/js/foundation/foundation.reveal.js',
           'bower_components/foundation/js/foundation/foundation.slider.js',

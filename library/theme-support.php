@@ -23,25 +23,27 @@ add_action('after_setup_theme', 'FoundationPress_theme_support');
 function change_post_menu_label() {
     global $menu;
     global $submenu;
-    $menu[5][0] = 'Seals';
-    $submenu['edit.php'][5][0] = 'Seals';
-    $submenu['edit.php'][10][0] = 'Add Seals';
+    $menu[5][0] = __('Seals');
+    $submenu['edit.php'][5][0] = __('All Seals');
+    $submenu['edit.php'][10][0] = __('Add Seals');
     echo '';
 }
 
 function change_post_object_label() {
         global $wp_post_types;
         $labels = &$wp_post_types['post']->labels;
-        $labels->name = 'Seals';
-        $labels->singular_name = 'Seal';
-        $labels->add_new = 'Add Seal';
-        $labels->add_new_item = 'Add Seal';
-        $labels->edit_item = 'Edit Seals';
-        $labels->new_item = 'Seal';
-        $labels->view_item = 'View Seal';
-        $labels->search_items = 'Search Seals';
-        $labels->not_found = 'No Seals found';
-        $labels->not_found_in_trash = 'No Seals found in Trash';
+        $labels->name = __('Seals');
+        $labels->singular_name = __('Seal');
+        $labels->menu_name = __('Seals');
+        $labels->all_items = __('All Seals');
+        $labels->add_new = __('Add Seal');
+        $labels->add_new_item = __('Add Seal');
+        $labels->edit_item = __('Edit Seals');
+        $labels->new_item = __('Seal');
+        $labels->view_item = __('View Seal');
+        $labels->search_items = __('Search Seals');
+        $labels->not_found = __('No Seals found');
+        $labels->not_found_in_trash = __('No Seals found in Trash');
     }
     add_action( 'init', 'change_post_object_label' );
     add_action( 'admin_menu', 'change_post_menu_label' );
@@ -50,26 +52,25 @@ function change_post_object_label() {
 function custom_post_type() {
 
     $labels = array(
-        'name'                => _x( 'Custom Posts', 'Post Type General Name', 'FoundationPress' ),
-        'singular_name'       => _x( 'Custom Post', 'Post Type Singular Name', 'FoundationPress' ),
-        'menu_name'           => __( 'Post Type', 'FoundationPress' ),
-        'parent_item_colon'   => __( 'Parent Item:', 'FoundationPress' ),
-        'all_items'           => __( 'All Items', 'FoundationPress' ),
-        'view_item'           => __( 'View Item', 'FoundationPress' ),
-        'add_new_item'        => __( 'Add New Item', 'FoundationPress' ),
-        'add_new'             => __( 'Add New', 'FoundationPress' ),
-        'edit_item'           => __( 'Edit Item', 'FoundationPress' ),
-        'update_item'         => __( 'Update Item', 'FoundationPress' ),
-        'search_items'        => __( 'Search Item', 'FoundationPress' ),
+        'name'                => _x( 'Lexicon', 'Post Type General Name', 'FoundationPress' ),
+        'singular_name'       => _x( 'Lexicon', 'Post Type Singular Name', 'FoundationPress' ),
+        'menu_name'           => __( 'Lexicon', 'FoundationPress' ),
+        'parent_item_colon'   => __( 'Parent Lexicon:', 'FoundationPress' ),
+        'all_items'           => __( 'All Lexicon Entries', 'FoundationPress' ),
+        'view_item'           => __( 'View Lexicon Entry', 'FoundationPress' ),
+        'add_new_item'        => __( 'Add New Lexicon Entry', 'FoundationPress' ),
+        'add_new'             => __( 'Add New Entry', 'FoundationPress' ),
+        'edit_item'           => __( 'Edit Lexique Entry', 'FoundationPress' ),
+        'update_item'         => __( 'Update Lexicon Entry', 'FoundationPress' ),
+        'search_items'        => __( 'Search Lexicon Entry', 'FoundationPress' ),
         'not_found'           => __( 'Not found', 'FoundationPress' ),
         'not_found_in_trash'  => __( 'Not found in Trash', 'FoundationPress' ),
     );
     $args = array(
-        'label'               => __( 'custom_post', 'FoundationPress' ),
-        'description'         => __( 'Custom Post Type Description', 'FoundationPress' ),
+        'label'               => __( 'lexicon', 'FoundationPress' ),
+        'description'         => __( 'Lexicon Description', 'FoundationPress' ),
         'labels'              => $labels,
         'supports'            => array( ),
-        'taxonomies'          => array( 'category', 'post_tag' ),
         'hierarchical'        => false,
         'public'              => true,
         'show_ui'             => true,
@@ -83,7 +84,7 @@ function custom_post_type() {
         'publicly_queryable'  => true,
         'capability_type'     => 'post',
     );
-    register_post_type( 'custom_post', $args );
+    register_post_type( 'lexicon', $args );
 
 }
 
@@ -105,19 +106,19 @@ function attachments_custom_taxonomy() {
     $labels = array(
         'name'                       => _x( 'Classifications', 'Taxonomy General Name', 'FoundationPress' ),
         'singular_name'              => _x( 'Classification', 'Taxonomy Singular Name', 'FoundationPress' ),
-        'menu_name'                  => __( 'Classification', 'FoundationPress' ),
-        'all_items'                  => __( 'All Items', 'FoundationPress' ),
-        'parent_item'                => __( 'Parent Item', 'FoundationPress' ),
-        'parent_item_colon'          => __( 'Parent Item:', 'FoundationPress' ),
-        'new_item_name'              => __( 'New Item Name', 'FoundationPress' ),
-        'add_new_item'               => __( 'Add New Item', 'FoundationPress' ),
-        'edit_item'                  => __( 'Edit Item', 'FoundationPress' ),
-        'update_item'                => __( 'Update Item', 'FoundationPress' ),
-        'separate_items_with_commas' => __( 'Separate items with commas', 'FoundationPress' ),
-        'search_items'               => __( 'Search Items', 'FoundationPress' ),
-        'add_or_remove_items'        => __( 'Add or remove items', 'FoundationPress' ),
-        'choose_from_most_used'      => __( 'Choose from the most used items', 'FoundationPress' ),
-        'not_found'                  => __( 'Not Found', 'FoundationPress' ),
+        'menu_name'                  => __( 'Classifications', 'FoundationPress' ),
+        'all_items'                  => __( 'All Classifications', 'FoundationPress' ),
+        'parent_item'                => __( 'Parent Classification', 'FoundationPress' ),
+        'parent_item_colon'          => __( 'Parent Classification:', 'FoundationPress' ),
+        'new_item_name'              => __( 'New Classification Name', 'FoundationPress' ),
+        'add_new_item'               => __( 'Add New Classification', 'FoundationPress' ),
+        'edit_item'                  => __( 'Edit Classification', 'FoundationPress' ),
+        'update_item'                => __( 'Update Classification', 'FoundationPress' ),
+        'separate_items_with_commas' => __( 'Separate classifications with commas', 'FoundationPress' ),
+        'search_items'               => __( 'Search Classifications', 'FoundationPress' ),
+        'add_or_remove_items'        => __( 'Add or remove classifications', 'FoundationPress' ),
+        'choose_from_most_used'      => __( 'Choose from the most used classifications', 'FoundationPress' ),
+        'not_found'                  => __( 'Classification not Found', 'FoundationPress' ),
     );
     $args = array(
         'labels'                     => $labels,
@@ -135,6 +136,42 @@ function attachments_custom_taxonomy() {
 // Hook into the 'init' action
 add_action( 'init', 'attachments_custom_taxonomy', 0 );
 
+// Register Custom Taxonomy
+function attachments_custom_taxonomy_2() {
+
+    $labels = array(
+        'name'                       => _x( 'Subjects', 'Taxonomy General Name', 'FoundationPress' ),
+        'singular_name'              => _x( 'Subject', 'Taxonomy Singular Name', 'FoundationPress' ),
+        'menu_name'                  => __( 'Subjects', 'FoundationPress' ),
+        'all_items'                  => __( 'All Subjects', 'FoundationPress' ),
+        'parent_item'                => __( 'Parent Subject', 'FoundationPress' ),
+        'parent_item_colon'          => __( 'Parent Subject:', 'FoundationPress' ),
+        'new_item_name'              => __( 'New Subject Name', 'FoundationPress' ),
+        'add_new_item'               => __( 'Add New Subject', 'FoundationPress' ),
+        'edit_item'                  => __( 'Edit Subject', 'FoundationPress' ),
+        'update_item'                => __( 'Update Subject', 'FoundationPress' ),
+        'separate_items_with_commas' => __( 'Separate subjects with commas', 'FoundationPress' ),
+        'search_items'               => __( 'Search Subjects', 'FoundationPress' ),
+        'add_or_remove_items'        => __( 'Add or remove subjects', 'FoundationPress' ),
+        'choose_from_most_used'      => __( 'Choose from the most used subjects', 'FoundationPress' ),
+        'not_found'                  => __( 'Subject not Found', 'FoundationPress' ),
+    );
+    $args = array(
+        'labels'                     => $labels,
+        'hierarchical'               => true,
+        'public'                     => true,
+        'show_ui'                    => true,
+        'show_admin_column'          => true,
+        'show_in_nav_menus'          => true,
+        'show_tagcloud'              => true,
+        'update_count_callback'      => 'class_count',  );
+    register_taxonomy( 'subject', array( 'attachment' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'attachments_custom_taxonomy_2', 0 );
+
     // giga super important pour les templates de la custom taxonomie appliquée aux médias
     // cf. :  commentaires de http://wordpress.stackexchange.com/questions/29635/how-to-create-an-attachments-archive-with-working-pagination 
 add_action('parse_query', 'hijack_query');
@@ -144,13 +181,26 @@ function hijack_query() {
     global $wp_query;
 
     // When inside a custom taxonomy archive include attachments 
-    if (is_tax('classification')) {
+    if (is_tax('classification') OR is_tax('subject')) {
         $wp_query->query_vars['post_type'] =  array( 'attachment' );
         $wp_query->query_vars['post_status'] =  array( null );
         // $wp_query->query_vars['tax_query'] =  array( array('taxonomy' => 'topic', 'field' => 'slug', 'terms' => array( 'verticale' ), 'operator' => 'NOT IN') );
 
         return $wp_query;
     }
+}
+
+add_filter('body_class','add_category_to_single');
+function add_category_to_single($classes, $class) {
+    if (is_single() ) {
+        global $post;
+        foreach((get_the_category($post->ID)) as $category) {
+            // add category slug to the $classes array
+            $classes[] = $category->category_nicename;
+        }
+    }
+    // return the $classes array
+    return $classes;
 }
 
 ?>

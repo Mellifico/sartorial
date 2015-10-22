@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js no-skrollr" <?php language_attributes(); ?> >
+<html class="no-js" <?php language_attributes(); ?> >
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,21 +33,28 @@
 	</head>
 	<body <?php body_class(); ?>>
 	<?php do_action('foundationPress_after_body'); ?>
-	
+	<?php include("svg/vectors-chest.svg"); ?>
 <!-- <div class="animsition"> -->
-
+	<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
 	
 	<?php do_action('foundationPress_layout_start'); ?>
+	
+	<nav class="tab-bar show-for-small-only">
+		<section class="left-small">
+			<a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+		</section>
+		<section class="middle tab-bar-section">
+			
+			<h1 class="title"><?php bloginfo( 'name' ); ?></h1>
 
+		</section>
+	</nav>
 
-<nav class="fixed">
-<a href="#" data-options="align:right" data-dropdown="drop" class="button small success"><i class="fi-book-bookmark"></i></a>
-<ul id="drop" class="small f-dropdown" data-dropdown-content>
-<li><a href="<?php echo home_url(); ?>"><i class="fi-home"></i>&nbsp;Accueil</a></li>
-<li><a href="<?php echo home_url(); ?>/galerie/"><i class="fi-eye"></i>&nbsp;Galerie</a></li>
-<?php wp_get_archives( 'type=alpha&format=html' ); ?>
-</ul>
-</nav>
+	<?php get_template_part('parts/off-canvas-menu'); ?>
+
+	<?php get_template_part('parts/top-bar'); ?>
+
 
 <section class="container" role="document">
 	<?php do_action('foundationPress_after_header'); ?>

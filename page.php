@@ -12,22 +12,6 @@
 			</header>
 			<?php do_action('foundationPress_page_before_entry_content'); ?>
 			<div class="entry-content">
-						<?php if ( has_post_thumbnail() ): ?>
-				<div class="row">
-					<div class="column">
-						<?php the_post_thumbnail('', array('class' => 'th')); ?>
-					</div>
-				</div>
-
-			<?php elseif ( !has_post_thumbnail() ): ?>
-
-				<div class="row">
-					<div class="column">
-						<?php placeholdit(); ?>
-					</div>
-				</div>
-
-			<?php endif; ?>
 				<?php the_content(); ?>
 			</div>
 			<footer>

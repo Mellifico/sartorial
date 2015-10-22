@@ -30,7 +30,7 @@
 		?>
 
 <div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);" >
-<figure class="logotype"><?php the_post_thumbnail('medium'); ?></figure>
+<figure class="centered"><?php the_post_thumbnail('medium'); ?></figure>
 </div>
 
 
@@ -38,7 +38,6 @@
 		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
 			<header class="row">
 			<div class="large-12 columns">
-
 			<?php the_content(); ?>
 			</div>
 			</header>
@@ -61,13 +60,30 @@
 				);
 				$attachments = get_posts($args);
 				?>
-				<div class="row">
-				<div class="large-12 columns">
+
+
+<div data-magellan-expedition="fixed">
+<dl class="sub-nav">
+				<?php
+				if ($attachments) {
+					foreach ($attachments as $attachment) {
+						$dest_title = apply_filters('the_title', $attachment->post_title);
+						$destattslug = sanitize_title($dest_title);
+
+						echo '<dd data-magellan-arrival="'.$destattslug.'-item-'.$attachment->ID.'"><a href="#'.$destattslug.'-item-'.$attachment->ID.'">'.$dest_title.'</a></dd>';
+				}
+			}
+				?>
+			
+</dl>
+</div>
 
 				<?php
 				if ($attachments) {
 					foreach ($attachments as $attachment) {
-						$item_th = wp_get_attachment_image_src($attachment->ID,'large');
+
+						$img_title = apply_filters('the_title', $attachment->post_title);
+						$attslug = sanitize_title($img_title);
 						$item_full   = wp_get_attachment_image_src($attachment->ID,'full');
 						$detail1_th = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'thumbnail');
 						$detail2_th = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'thumbnail');
@@ -75,30 +91,24 @@
 						$detail1_full = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'full');
 						$detail2_full = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'full');
 						$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
-						$img_title = apply_filters('the_title', $attachment->post_title);
 
-						$postparent_title = apply_filters('the_title', $attachment->post_parent -> post_title);
-
-						echo '<figure id="item-'.$attachment->ID.'"';
-						echo '<a href="'.$item_full[0].'">';
-						echo '<img src="';
-						echo $item_th[0];
-						echo '" alt="'.$img_title.'"/></a>';
-						
+						echo '<h3 data-magellan-destination="'.$attslug.'-item-'.$attachment->ID.'">'.$img_title.'</h3><a name="'.$img_title.'"></a>';
+						echo '<a name="'.$attslug.'-item-'.$attachment->ID.'"></a>';
 						if ($detail1_th) {echo '<a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a>'; }
 						if ($detail2_th) {echo '<a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a>'; }
 						if ($detail3_th) {echo '<a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a>'; }
-						
-						echo '<figcaption>';
-						echo '<h2>'.apply_filters('the_title', $attachment->post_title).'</h2>';
+
+
 						echo apply_filters('the_title', $attachment->post_content);
-						echo '</figcaption>';
-						echo '</figure>';
-					}
+						echo '<img src="';
+						echo $item_full[0];
+						echo '" alt="'.$img_title.'"/>';
+						
+							}
 				}
 				?>
-				</div>
-				</div>
+
+
 
 			
 			<footer>
