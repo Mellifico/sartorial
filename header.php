@@ -33,21 +33,38 @@
 	</head>
 	<body <?php body_class(); ?>>
 	<?php do_action('foundationPress_after_body'); ?>
-	
+		<div class="off-canvas-wrap" data-offcanvas>
+	<div class="inner-wrap">
 <!-- <div class="animsition"> -->
 
 	
 	<?php do_action('foundationPress_layout_start'); ?>
 
 
-<nav class="fixed">
-<a href="#" data-options="align:right" data-dropdown="drop" class="button small success"><i class="fi-book-bookmark"></i></a>
-<ul id="drop" class="small f-dropdown" data-dropdown-content>
-<li><a href="<?php echo home_url(); ?>"><i class="fi-home"></i>&nbsp;Accueil</a></li>
-<li><a href="<?php echo home_url(); ?>/galerie/"><i class="fi-eye"></i>&nbsp;Galerie</a></li>
-<?php wp_get_archives( 'type=alpha&format=html' ); ?>
+<div class="fixed contain-to-grid">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+    <li class="name">
+      <h1><a href="<?php echo home_url(); ?>"><i class="fi-book-bookmark"></i>&nbsp;<?php echo __('The PG Guide', 'FoundationPress'); ?></a></h1>
+    </li>
+    <li class="divider"></li>
+<section class="top-bar-section">
+<ul class="left">
+<li><?php apply_filters( 'wpml_element_link', 540 ); ?></li>
+<li class="divider"></li>
+<li><select  name="seals-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
+<option value=""><?php echo esc_attr( __( 'Seals' ) ); ?></option> 
+  <?php wp_get_archives( 'type=alpha&format=option' ); ?>
+</select></li>
+<li class="divider"></li>
+
 </ul>
+<ul class="right">
+<li><?php languages_list(); ?></li>
+</ul>
+</section>
 </nav>
+</div>
 
 <section class="container" role="document">
 	<?php do_action('foundationPress_after_header'); ?>

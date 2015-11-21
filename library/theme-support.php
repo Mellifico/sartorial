@@ -202,5 +202,59 @@ function add_category_to_single($classes, $class) {
     // return the $classes array
     return $classes;
 }
-
+function languages_list(){
+    $languages = icl_get_languages('skip_missing=0&orderby=code');
+    if(!empty($languages)){
+        foreach($languages as $l){
+            echo '<li>';
+            echo '<a href="'.$l['url'].'">';
+            echo icl_disp_language($l['native_name']);
+            echo '</a>';
+            echo '</li>';
+        }
+    }
+}
+function baw_count_posts( $args )
+ {
+ // Si on passe juste un type de post en chaine, on force la construction du tableau
+ $args = is_string( $args ) ? array( 'post_type'=>$args ) : $args;
+ // valeurs par défaut
+ $default = array( 'post_type'=>'post', 'perm'=>'', 'lang'=>'', 'post_status'=>'publish' );
+ // croisement des valeurs par défaut avec celles passées en paramètre
+ $args = wp_parse_args( $args, $default );
+ // extraction des variables
+ extract( $args, EXTR_SKIP );
+ // on vérifie que WPML est activé avec leur globale, si "non", on fait appel à la fonction WordPress à la place
+ global $sitepress;
+ if( !$sitepress )
+ return wp_count_posts( $post_type, $perm );
+ // Si on a déjà en cache notre valeur on la renvoie
+ $count = wp_cache_get( $post_type, 'counts' );
+ if ( false !== $count )
+ return (object)array( $post_status=>$count );
+ // On récupère la classe globale WPDB (WordPress DataBase)
+ global $wpdb;
+ // Si on a pas fourni de langue dans les paramètres on prends la valeur de WPML sinon "fr"
+ if( empty( $lang ) )
+ $lang = defined('ICL_LANGUAGE_CODE')?ICL_LANGUAGE_CODE:'fr';
+ // simple raccourci pour gagner de la place en nombre de caractères (place que je perds avec ce commentaire ;p)
+ $p = $wpdb->prefix;
+ // La requête magique
+ $query = "SELECT COUNT( {$p}posts.ID )
+ FROM {$p}posts
+ LEFT JOIN {$p}icl_translations ON
+ {$p}posts.ID = {$p}icl_translations.element_id
+ WHERE {$p}posts.post_status='{$post_status}'
+ AND {$p}posts.post_type='{$post_type}'
+ AND {$p}icl_translations.language_code = '{$lang}'
+ AND {$p}icl_translations.element_type = 'post_{$post_type}'";
+ // on lance la requête
+ $count = $wpdb->get_var( $query );
+ // Mise en cache
+ wp_cache_set( $post_type, $count, 'counts' );
+ // Construction de l'object de retour
+ $count = (object)array( $post_status=>$count );
+ // Envoie de la valeur
+ return $count;
+ }
 ?>

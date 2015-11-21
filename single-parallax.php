@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-
+<div id="progress" data-0="width:0%;background:hsl(200, 100%, 50%);" data-end="width:100%;background:hsl(920, 100%, 50%);"></div>
 <div role="main">	
 
 	<?php do_action('foundationPress_before_content'); ?>
@@ -27,21 +27,27 @@
 			foreach ($cover_info as $sealcover) {
 				$attcover_full   = wp_get_attachment_image_src($sealcover->ID,'full');	
 			}
+			wp_reset_postdata();
 		}
 		?>
 
-<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-<div class="wrapper row">
-<div class="large-6 columns CoverImage FlexEmbed FlexEmbed--1by4" style="background-image:url(<?php echo $attcover_full[0]; ?>);">
 
-</div>
-<div class="large-6 columns">
-<header class="panel">
-<h1 class="uppercase textshadow-basic"><?php the_title(); ?></h1>
-<?php the_content(); ?>
-</header>
-</div>
-</div>
+
+
+		<article <?php post_class('wrapper'); ?> id="post-<?php the_ID(); ?>">
+		<figure class="text-center"><?php the_post_thumbnail('medium'); ?></figure>
+		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
+			<div class="row">
+			<div class="large-12 columns">
+
+			<?php the_content(); ?>
+			</div>
+			</div>
+
+<div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);"></div>
+
+
+
 
 						<?php 
 				$args = array(
@@ -87,6 +93,7 @@ if ($attachments) {
 		?>
 
 <?php    }  ?> 
+<?php wp_reset_postdata(); ?>
 <?php } ?>
 
 <div id="skrollr-body">
@@ -118,17 +125,23 @@ if ($attachments) {
 	$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
 	
 
-        echo '<div class="content content-full" id="'.$attslug.'-item-'.$attachment->ID.'"><div class="row"><div class="bg-light medium-6 medium-centered large-4 large-centered columns"><h2>'.$atttitle.'</h2>';
+        echo '<div class="content content-full" id="'.$attslug.'-item-'.$attachment->ID.'">';
+        echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center">'.$atttitle.'</h2>';
+        echo '<div class="row"><div class="medium-8 medium-centered large-6 large-centered columns">';
+          
+        echo '<ul class="text-center skrollr-popup small-block-grid-3 medium-block-grid-3 large-block-grid-3">'; 
+	if ($detail1_th) {echo '<li><a class="outline" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+	if ($detail2_th) {echo '<li><a class="outline" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+	if ($detail3_th) {echo '<li><a class="outline" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+        echo '</ul>';
         echo apply_filters('the_title', $attachment->post_content);
-        echo '<ul class="galerie small-block-grid-3 medium-block-grid-3 large-block-grid-3">'; 
-	if ($detail1_th) {echo '<li><a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail2_th) {echo '<li><a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail3_th) {echo '<li><a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-        echo '</ul></div></div></div>';
+        echo '</div></div></div></div>';
         echo '<div class="gap gap-100" style="background-image:url('.$attimg_full[0].');"></div>';
-    }   
+    }
+wp_reset_postdata();
 } ?>
-</div>
+
+<div data-bottom-top="background-color:rgb(0,0,255);transform:rotate(0deg);" data-100-top="background-color:rgb(255,0,0);transform:rotate(360deg);"><h3 class="fattext text-center">Fin</h3></div>
 
 
 			<footer>
@@ -145,4 +158,5 @@ if ($attachments) {
 
 	
 </div>
+
 <?php get_footer(); ?>

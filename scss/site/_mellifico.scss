@@ -1,14 +1,16 @@
-html, body {
-    height:100%;
-  }
 
+.container[role="document"] {
+  max-width:120em;
+  margin: 0 auto;
+}
   .skrollr-desktop body.parallax-layout {
     height:100% !important;
+    overflow-x:hidden;
   }
 .skrollr-desktop .parallax-layout .container[role="document"],
 .skrollr-desktop .parallax-layout div[role="main"],
 .skrollr-desktop .parallax-layout article.category-parallax-layout {
-    min-height:100%;
+    min-height:100vh;
     }
   .parallax-image-wrapper {
     position:fixed;
@@ -63,7 +65,7 @@ html, body {
   .gap-50 {
     height:50vh;
   }
-  .gap-100 {
+  .gap-100, .parallax-layout .wrapper.main-footer {
     height:100vh;
   }
   .content {
@@ -72,7 +74,58 @@ html, body {
   .content-full {
     height:100vh;
   }
+  .content-full ul{
 
+}
+.content-full ul li{
+
+    list-style: none;
+}
+.fattext {
+
+}
+#progress {
+  height:2%;
+  background:#444;
+  bottom:0;
+  z-index:200;
+}
+#properties {
+  width: 100%;
+  margin: 0 auto;
+}
+#progress.skrollable, #properties.skrollable {
+  /*
+   * First-level skrollables are positioned relative to window
+   */
+  position:fixed;
+
+  /*
+   * Skrollables by default have a z-index of 100 in order to make it easy to position elements in front/back without changing each skrollable
+   */
+  z-index:100;
+}
+
+.skrollr-mobile .skrollable {
+  /*
+    May cause issues on Android default browser (see #331 on GitHub).
+  */
+  position:absolute;
+}
+
+.skrollable .skrollable {
+  /*
+   * Second-level skrollables are positioned relative their parent skrollable
+   */
+  position:absolute;
+}
+
+.skrollable .skrollable .skrollable {
+  /*
+   * Third-level (and below) skrollables are positioned static
+   */
+  position:static;
+}
 .absolute {
   position: absolute;
   top:0;
@@ -92,12 +145,18 @@ html, body {
 }
 .wrapper {
 	position: relative;
-	padding: rem-calc(40) 0;
   max-width:120em;
   margin: 0 auto;
 }
+.wrapper.brand {
+  min-height:100vh;
+  max-height:1200px;
+}
 .wrapper.brand.CoverImage {
-  padding: rem-calc(120) 0;
+  padding: 0;
+}
+.wrapper.brand.CoverImage * {
+  color: $white!important;
 }
 .alphalayer * {
   position: relative;
@@ -242,11 +301,15 @@ a {
 .wrapper.seals {
     // background: url("../assets/bg-chest/background-pattern02.png") transparent;
     background-color: transparent;
+    padding: rem-calc(30) 0;
   }
   .count {
-    padding: rem-calc(4);
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 0 rem-calc(20);
     border-radius: 50%;
-    background-color: $silver;
+    background-color: $base03;
+    border: 2px solid $white;
   }
   .seal {
     padding: rem-calc(20);
@@ -269,6 +332,21 @@ a {
  img.full, .full img {
     width: 100%;
     max-width: 100%;
+  }
+  .full {
+    border-bottom: 8px solid $base03;
+  }
+  .seal article {
+    padding: rem-calc(20);
+    border: 1px solid $base03;
+          -webkit-transition: all 0.2s ease-out;
+     -moz-transition: all 0.2s ease-out; 
+       -o-transition: all 0.2s ease-out; 
+          transition: all 0.2s ease-out; 
+  }
+    .seal:hover article {
+    padding: rem-calc(10);
+    border: 1px solid transparent;
   }
 .page-numbers li {
   display: inline-block;

@@ -1370,10 +1370,10 @@ $thumb-border-color: $base02;
 // $has-tip-cursor-type: help;
 
 // $tooltip-padding: rem-calc(12);
-// $tooltip-bg: $oil;
+$tooltip-bg: $white;
 // $tooltip-font-size: rem-calc(14);
 // $tooltip-font-weight: $font-weight-normal;
-// $tooltip-font-color: $white;
+$tooltip-font-color: $oil;
 // $tooltip-line-height: 1.3;
 // $tooltip-close-font-size: rem-calc(10);
 // $tooltip-close-font-weight: $font-weight-normal;
@@ -1443,8 +1443,8 @@ $topbar-dropdown-label-bg: $base3;
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: $font-weight-bold;
-$topbar-menu-link-color: $base01;
-$topbar-menu-icon-color: $base01;
+$topbar-menu-link-color: $oil;
+$topbar-menu-icon-color: $oil;
 $topbar-menu-link-color-toggled: $base0;
 $topbar-menu-icon-color-toggled: $base0;
 

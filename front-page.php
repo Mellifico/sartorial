@@ -27,19 +27,20 @@ if ($bg_item) {
     $bg_full = wp_get_attachment_image_src($bg->ID,'full');
 
 			}
+             wp_reset_postdata();
 		}
 
 	?>
 <div class="wrapper brand CoverImage bg-fixed alphalayer" style="background-image:url(<?php echo $bg_full[0]; ?>);">
-<?php wp_reset_postdata(); ?>
+
 <?php
-$count_posts = wp_count_posts();
+$count_posts = baw_count_posts( 'post' );
 $published_posts = $count_posts->publish;
 ?>
-<h2 class="smallcaps text-center"><small>parisian gentleman</small></h2>
-<p class="text-center"><em>présente&nbsp;:</em></p>
-<h1 id="big" class="text-center">Le guide</h1>
-<h3 class="text-center">des <?php echo $published_posts; ?> maisons de qualité</h3>
+<h2 class="smallcaps text-center"><small>parisian gentleman;</small></h2>
+<h1 id="big" class="text-center"><?php echo __('The Guide', 'FoundationPress'); ?></h1>
+  
+<h2 class="text-center"><span class="count"><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?></h2>
 </div>
 
 <div class="wrapper seals">
@@ -99,23 +100,22 @@ if ($bg_detail) {
     $bg_d_full = wp_get_attachment_image_src($bg_d->ID,'full');
 
             }
+             wp_reset_postdata();
         }
 
     ?>
-<div class="wrapper brand CoverImage bg-fixed FlexEmbed FlexEmbed--5by1" style="background-image:url(<?php echo $bg_d_full[0]; ?>);">
-</div>
-<?php wp_reset_postdata(); ?>
-<div class="wrapper">
-	<?php $all_items = array(
+<div class="wrapper brand CoverImage bg-fixed FlexEmbed FlexEmbed--5by1 alphalayer" style="background-image:url(<?php echo $bg_d_full[0]; ?>);">
+
+  <?php $all_items = array(
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'published',
     'numberposts' => -1,
-    	'tax_query'	=> array(
-    	        array(
+        'tax_query' => array(
+                array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => array('details', 'items', 'covers'),
+            'terms'     => array('details', 'items', 'covers', 'logotypes'),
             'operator'  => 'IN')
             ),
 );  
@@ -123,8 +123,13 @@ $all_items_loop = get_posts($all_items);
 $count_items = count($all_items_loop);
 
 ?>
-<h2 class="text-center"><?php echo $count_items; ?> images</h2>
-<?php wp_reset_postdata(); ?>
+
+ <h2 class="fattext text-center"><?php echo __('Illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></h2>
+</div>
+
+<div class="wrapper">
+
+
 
 
 	<?php $args = array(
@@ -164,24 +169,19 @@ if ($attachments) {
 	$parent_id = $attachment->post_parent;
 	$parent_title = get_the_title( $parent_id );
 	$parent_permalink = get_permalink( $parent_id );
-	$detail1_th = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'thumbnail');
-	$detail2_th = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'thumbnail');
-	$detail3_th = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'thumbnail');
-	$detail1_full = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'full');
-	$detail2_full = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'full');
-	$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
+
 	?>
 
 	<?php
-        echo '<a class="item small-4 medium-2 large-2" href="'.$parent_permalink.'">
+        echo '<a class="item small-4 medium-2 large-1" href="'.$parent_permalink.'" title="'.$parent_title.'">
         <img id="item-'.$attachment->ID.'"
           src="'.$attimg_medium[0].'"
-           alt="'.$parent_title.'"
-           title="'.$parent_title.'"/></a>';
+           alt="'.$parent_title.'"/></a>';
         ?>
     <?php } ?>  
+    <?php  wp_reset_postdata(); ?>
 <?php } ?>
-<?php wp_reset_postdata(); ?>
+
 </div>
 
 </div>

@@ -78,6 +78,20 @@ $('.galerie').magnificPopup({
   }
   // other options
 });
+// chrome bug : https://github.com/dimsemenov/Magnific-Popup/issues/125
+
+
+// On popup open, put initial width on covering element.
+$('.skrollr-popup').magnificPopup({
+  delegate: 'a:not(.except)', // child items selector, by clicking on it popup will open
+    type: 'image',
+          fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+
+});
+
+
 //MAGELLAN
 $(document).foundation({
 "magellan-expedition": {
@@ -92,12 +106,9 @@ $(document).foundation({
 });
 
 // SKROLLR
-  var s = skrollr.init({
-    smoothScrolling: false,
-    mobileDeceleration: 0.004
-  });
+  var s = skrollr.init();
 if(!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera)){
-    skrollr.init({
+    var s = skrollr.init({
         forceHeight: false
     });
 }

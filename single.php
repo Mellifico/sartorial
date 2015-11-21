@@ -9,7 +9,7 @@
     	include 'single-slider.php';
     } elseif (in_category('magellan-layout')) {
     	include 'single-magellan.php';
-    } elseif (in_category('parallax-layout')) {
+    } elseif (in_category('parallax-layout') || in_category('parallax-layout-en')) {
     	include 'single-parallax.php';
     } else {
     ?>
@@ -18,7 +18,7 @@
 
 <div role="main">	
 
-	<?php do_action('foundationPress_before_content'); ?>
+	
 
 	<?php while (have_posts()) : the_post(); ?>
 		<?php 
@@ -42,26 +42,23 @@
 			foreach ($cover_info as $sealcover) {
 				$attcover_full   = wp_get_attachment_image_src($sealcover->ID,'full');	
 			}
+			 wp_reset_postdata(); 
 		}
 		?>
-
-<div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);" >
-<figure class="centered"><?php the_post_thumbnail('medium'); ?></figure>
-</div>
-
+<?php if ($attcover_full) { ?>
+<div class="wrapper CoverImage FlexEmbed FlexEmbed--16by9" style="background-image:url(<?php echo $attcover_full[0]; ?>);" ></div>
+<?php } ?>
 
 		<article <?php post_class('wrapper') ?> id="post-<?php the_ID(); ?>">
 		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
 			<header class="row">
 			<div class="large-12 columns">
-
+				<?php the_post_thumbnail('medium'); ?>
 			<?php the_content(); ?>
 			</div>
 			</header>
-<?php do_action('foundationPress_post_before_entry_content'); ?>
 
-<!-- 				<div class="row">
-				<div class="large-12 columns"> -->
+
 				<?php 
 				$args = array(
 					'orderby'          => 'rand',
@@ -119,11 +116,11 @@ if ($attachments) {
         echo apply_filters('the_title', $attachment->post_content);
 
         echo '</figcaption></figure>';
-    }   
+    }
+     wp_reset_postdata();   
 } ?>
 </div>
-<!-- 				</div>
-				</div> -->
+
 
 			
 			<footer>
@@ -135,7 +132,7 @@ if ($attachments) {
 		
 	<?php endwhile;?>
 
-	<?php do_action('foundationPress_after_content'); ?>
+	
 
 
 	
