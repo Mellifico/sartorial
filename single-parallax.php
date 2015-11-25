@@ -129,7 +129,8 @@ if ($attachments) {
         echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center">'.$atttitle.'</h2>';
         echo '<div class="row"><div class="medium-8 medium-centered large-6 large-centered columns">';
           
-        echo '<ul class="text-center skrollr-popup small-block-grid-3 medium-block-grid-3 large-block-grid-3">'; 
+        echo '<ul class="text-center skrollr-popup small-block-grid-4 medium-block-grid-4 large-block-grid-4">';
+        echo '<li><a class="outline" href="'.$attimg_full[0].'"><img src="'.$attimg_th[0].'" alt="'.$img_title.'" /></a></li>';
 	if ($detail1_th) {echo '<li><a class="outline" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
 	if ($detail2_th) {echo '<li><a class="outline" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
 	if ($detail3_th) {echo '<li><a class="outline" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }

@@ -3,6 +3,12 @@
   max-width:120em;
   margin: 0 auto;
 }
+.full-h {
+    min-height: 100vh;
+}
+.brdr-blue {
+  border: 1rem solid $base03;
+}
   .skrollr-desktop body.parallax-layout {
     height:100% !important;
     overflow-x:hidden;
@@ -147,6 +153,12 @@
 	position: relative;
   max-width:120em;
   margin: 0 auto;
+}
+.padded {
+padding: rem-calc(40) rem-calc(20);
+}
+.vert-padded {
+padding: rem-calc(40) 0;
 }
 .wrapper.brand {
   min-height:100vh;

@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-<?php do_action('foundationPress_before_content'); ?>
-
 
 	<?php $random_item = array(
     'post_type' => 'attachment',
@@ -13,7 +11,7 @@
     	        array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => 'covers',
+            'terms'     => 'items',
             'operator'  => 'IN')
             ),
 );  
@@ -31,16 +29,21 @@ if ($bg_item) {
 		}
 
 	?>
-<div class="wrapper brand CoverImage bg-fixed alphalayer" style="background-image:url(<?php echo $bg_full[0]; ?>);">
-
-<?php
+<div class="wrapper row">
+<div class="medium-6 large-6 columns padded full-h brdr-blue">
+    <?php
 $count_posts = baw_count_posts( 'post' );
 $published_posts = $count_posts->publish;
 ?>
 <h2 class="smallcaps text-center"><small>parisian gentleman;</small></h2>
-<h1 id="big" class="text-center"><?php echo __('The Guide', 'FoundationPress'); ?></h1>
+<h1 class="text-center"><?php echo __('The Guide', 'FoundationPress'); ?><br />&#x2230;</h1>
   
-<h2 class="text-center"><span class="count"><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?></h2>
+<h2 class="text-center">
+<span><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?></h2>
+
+</div>
+<div class="medium-6 large-6 columns CoverImage full-h" style="background-image:url(<?php echo $bg_full[0]; ?>);"></div>
+
 </div>
 
 <div class="wrapper seals">
@@ -60,7 +63,6 @@ $published_posts = $count_posts->publish;
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php do_action('foundationPress_before_pagination'); ?>
 
 	<?php endif;?>
 
@@ -124,7 +126,7 @@ $count_items = count($all_items_loop);
 
 ?>
 
- <h2 class="fattext text-center"><?php echo __('Illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></h2>
+ <h2 class="fattext text-center vert-padded">&#x2230;<br /><?php echo __('Illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></h2>
 </div>
 
 <div class="wrapper">
@@ -185,7 +187,6 @@ if ($attachments) {
 </div>
 
 </div>
-<?php do_action('foundationPress_after_content'); ?>
 
 
 <?php get_footer(); ?>
