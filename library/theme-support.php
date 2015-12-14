@@ -9,7 +9,11 @@ function FoundationPress_theme_support() {
     // Add post thumbnail support: http://codex.wordpress.org/Post_Thumbnails
     add_theme_support('post-thumbnails');
     // set_post_thumbnail_size(150, 150, false);
-
+    
+add_action('init', 'microthumbs');
+function microthumbs() {
+        add_image_size( 'microthumb', 64 );   
+}
     // rss thingy
     add_theme_support('automatic-feed-links');
 
@@ -128,7 +132,7 @@ function attachments_custom_taxonomy() {
         'show_admin_column'          => true,
         'show_in_nav_menus'          => true,
         'show_tagcloud'              => true,
-        'update_count_callback'      => 'class_count',  );
+        'update_count_callback'      => '_update_generic_term_count',  );
     register_taxonomy( 'classification', array( 'attachment' ), $args );
 
 }
@@ -164,7 +168,7 @@ function attachments_custom_taxonomy_2() {
         'show_admin_column'          => true,
         'show_in_nav_menus'          => true,
         'show_tagcloud'              => true,
-        'update_count_callback'      => 'class_count',  );
+        'update_count_callback'      => '_update_generic_term_count',  );
     register_taxonomy( 'subject', array( 'attachment' ), $args );
 
 }

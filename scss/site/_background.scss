@@ -9,7 +9,7 @@
 .bg-magenta {background-color:$magenta;}
 .bg-green {background-color:$green;}
 .bg-cyan {background-color:$cyan;}
-
+.bg-white {background-color: #fff;}
 .bg-tissu-a {
   background: transparent url("../assets/bg-chest/background-pattern01.png");
 }
@@ -121,4 +121,22 @@ linear-gradient(60deg, $base03 25%, transparent 25.5%, transparent 75%, $base03 
      -o-background-size:80px 140px;
         background-size:80px 140px;
 background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
+.pattern-pdp {
+background:
+linear-gradient(-45deg, #fff 25%, transparent 25%, transparent 75%, $base02 75%, $base02) 0 0, linear-gradient(-45deg, $base02 25%, transparent 25%, transparent 75%, #fff 75%, #fff) 1em 1em, linear-gradient(45deg, $base02 17%, transparent 17%, transparent 25%, $base02 25%, $base02 36%, transparent 36%, transparent 64%, $base02 64%, $base02 75%, transparent 75%, transparent 83%, $base02 83%) 1em 1em;
+background:
+-webkit-linear-gradient(135deg, #fff 25%, transparent 25%, transparent 75%, $base02 75%, $base02) 0 0, -webkit-linear-gradient(135deg, $base02 25%, transparent 25%, transparent 75%, #fff 75%, #fff) 1em 1em, -webkit-linear-gradient(45deg, $base02 17%, transparent 17%, transparent 25%, $base02 25%, $base02 36%, transparent 36%, transparent 64%, $base02 64%, $base02 75%, transparent 75%, transparent 83%, $base02 83%) 1em 1em;
+background:
+-moz-linear-gradient(135deg, #fff 25%, transparent 25%, transparent 75%, $base02 75%, $base02) 0 0, -moz-linear-gradient(135deg, $base02 25%, transparent 25%, transparent 75%, #fff 75%, #fff) 1em 1em, -moz-linear-gradient(45deg, $base02 17%, transparent 17%, transparent 25%, $base02 25%, $base02 36%, transparent 36%, transparent 64%, $base02 64%, $base02 75%, transparent 75%, transparent 83%, $base02 83%) 1em 1em;
+background:
+-o-linear-gradient(135deg, #fff 25%, transparent 25%, transparent 75%, $base02 75%, $base02) 0 0, -o-linear-gradient(135deg, $base02 25%, transparent 25%, transparent 75%, #fff 75%, #fff) 1em 1em, -o-linear-gradient(45deg, $base02 17%, transparent 17%, transparent 25%, $base02 25%, $base02 36%, transparent 36%, transparent 64%, $base02 64%, $base02 75%, transparent 75%, transparent 83%, $base02 83%) 1em 1em;
+background:
+linear-gradient(-45deg, #fff 25%, transparent 25%, transparent 75%, $base02 75%, $base02) 0 0,
+linear-gradient(-45deg, $base02 25%, transparent 25%, transparent 75%, #fff 75%, #fff) 1em 1em,
+linear-gradient(45deg, $base02 17%, transparent 17%, transparent 25%, $base02 25%, $base02 36%, transparent 36%, transparent 64%, $base02 64%, $base02 75%, transparent 75%, transparent 83%, $base02 83%) 1em 1em;
+background-color: #fff;
+-webkit-background-size: 2em 2em;
+     -o-background-size: 2em 2em;
+        background-size: 2em 2em;
 }

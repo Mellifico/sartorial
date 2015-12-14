@@ -114,6 +114,12 @@ if ($attachments) {
 	$parent_id = $attachment->post_parent;
 	$parent_title = get_the_title( $parent_id );
 	$parent_permalink = get_permalink( $parent_id );
+	$detail1_title = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->post_title));
+	$detail2_title = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->post_title));
+	$detail3_title = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->post_title));
+	$detail1slug = sanitize_title($detail1_title);
+	$detail2slug = sanitize_title($detail2_title);
+	$detail3slug = sanitize_title($detail3_title);
 	$detail1_th = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'thumbnail');
 	$detail2_th = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'thumbnail');
 	$detail3_th = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'thumbnail');
@@ -131,9 +137,9 @@ if ($attachments) {
           
         echo '<ul class="text-center skrollr-popup small-block-grid-4 medium-block-grid-4 large-block-grid-4">';
         echo '<li><a class="outline" href="'.$attimg_full[0].'"><img src="'.$attimg_th[0].'" alt="'.$img_title.'" /></a></li>';
-	if ($detail1_th) {echo '<li><a class="outline" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail2_th) {echo '<li><a class="outline" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail3_th) {echo '<li><a class="outline" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+	if ($detail1_th) {echo '<li id="'.$detail1slug.'-item-detail-'.$attachment->ID.'"><a class="outline" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+	if ($detail2_th) {echo '<li id="'.$detail2slug.'-item-detail-'.$attachment->ID.'"><a class="outline" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+	if ($detail3_th) {echo '<li id="'.$detail3slug.'-item-detail-'.$attachment->ID.'"><a class="outline" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
         echo '</ul>';
         echo apply_filters('the_title', $attachment->post_content);
         echo '</div></div></div></div>';

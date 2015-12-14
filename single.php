@@ -16,9 +16,7 @@
 
 <?php get_header(); ?>
 
-<div role="main">	
-
-	
+<div role="main">
 
 	<?php while (have_posts()) : the_post(); ?>
 		<?php 
@@ -42,7 +40,6 @@
 			foreach ($cover_info as $sealcover) {
 				$attcover_full   = wp_get_attachment_image_src($sealcover->ID,'full');	
 			}
-			 wp_reset_postdata(); 
 		}
 		?>
 <?php if ($attcover_full) { ?>
@@ -53,11 +50,10 @@
 		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
 			<header class="row">
 			<div class="large-12 columns">
-				<?php the_post_thumbnail('medium'); ?>
+			<?php the_post_thumbnail('medium'); ?>
 			<?php the_content(); ?>
 			</div>
 			</header>
-
 
 				<?php 
 				$args = array(
@@ -77,7 +73,7 @@
 				);
 				$attachments = get_posts($args);
 				?>
-<div id="msnry-gallery">
+
 <?php 
 if ($attachments) {
     foreach ($attachments as $attachment) {
@@ -98,46 +94,36 @@ if ($attachments) {
 	$detail1_th = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'thumbnail');
 	$detail2_th = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'thumbnail');
 	$detail3_th = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'thumbnail');
+	$detail1_large = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'large');
+	$detail2_large = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'large');
+	$detail3_large = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'large');
 	$detail1_full = wp_get_attachment_image_src(get_field('item_detail_1', $attachment->ID), 'full');
 	$detail2_full = wp_get_attachment_image_src(get_field('item_detail_2', $attachment->ID), 'full');
 	$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
 	
-        echo '<figure id="'.$attslug.'-item-'.$attachment->ID.'" class="ligatures cartel item galerie mosaique small-12 medium-6 large-4">';
-
-        echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img class="panel" src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
-        echo '<figcaption class="panel">';
-
-        echo '<ul class="text-center small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
-	if ($detail1_th) {echo '<li><a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail2_th) {echo '<li><a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-	if ($detail3_th) {echo '<li><a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-        echo '</ul>';
-                echo '<h3 class="text-center">'.$atttitle.'</h3>';
+        echo '<div id="'.$attslug.'-item-'.$attachment->ID.'" class="ligatures galerie wrapper row bg-light-min">';
+        echo '<h3 class="text-center fattext">'.$atttitle.'</h3>';
         echo apply_filters('the_title', $attachment->post_content);
-
-        echo '</figcaption></figure>';
+        echo '<ul class="text-center small-block-grid-2 medium-block-grid-2 large-block-grid-2">';
+        echo '<li><img src="'.$attimg_large[0].'" alt="'.$atttitle.'"/></li>';
+	if ($detail1_th) {echo '<li><img src="'.$detail1_large[0].'" alt="'.$img_title.'" /></li>'; }
+	if ($detail2_th) {echo '<li><img src="'.$detail2_large[0].'" alt="'.$img_title.'" /></li>'; }
+	if ($detail3_th) {echo '<li><img src="'.$detail3_large[0].'" alt="'.$img_title.'" /></li>'; }
+        echo '</ul>';
+        echo '</div><hr />';
     }
-     wp_reset_postdata();   
+ 
 } ?>
-</div>
 
-
-			
 			<footer>
-				<?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'FoundationPress'), 'after' => '</p></nav>' )); ?>
-				
+				<?php wp_link_pages(array('before' => '<nav id="page-nav"><p>' . __('Pages:', 'FoundationPress'), 'after' => '</p></nav>' )); ?>	
 			</footer>
 
 		</article>
 		
 	<?php endwhile;?>
-
-	
-
-
 	
 </div>
-
 
 <?php get_footer(); ?>
 <?php } ?>

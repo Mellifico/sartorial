@@ -14,7 +14,7 @@
   //'lang' => ICL_LANGUAGE_CODE,
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
-    'post_status' => 'inherit',
+    'post_status' => 'publish',
     'numberposts' => 42,
     'offset' => 42 * ($current - 1),
     'suppress_filters' => false,
@@ -34,8 +34,8 @@ $pagination = array(
   'total' => wp_count_posts('attachment')->inherit / 42,
   'current' => $current,
   'show_all' => false,
-  'end_size' => 2,
-  'mid_size' => 4,
+  'end_size' => 1,
+  'mid_size' => 2,
   'type' => 'list',
   'before_page_number' => '&#123;',
   'after_page_number' => '&#125;',
@@ -52,8 +52,9 @@ $attachments = get_posts($args);
 $post_count = count ($attachments);
 ?>
 <div class="wrapper">
-<?php echo paginate_links($pagination); ?>
-<div id="msnry-gallery">
+<h1 id="big" class="text-center"><?php apply_filters( 'wpml_element_link', 540 ); ?></h1>
+<div class="text-center"><?php echo paginate_links($pagination); ?></div>
+<div id="msnry-gallery" class="bg-light-min">
 <?php 
 if ($attachments) {
     foreach ($attachments as $attachment) {
@@ -80,21 +81,20 @@ if ($attachments) {
   ?>
 
   <?php
-        echo '<figure id="item-'.$attachment->ID.'" class="ligatures cartel item galerie mosaique small-12 medium-4 large-2">';
-        echo '<figcaption class="panel">';
-
-
-        echo '<h3 class="text-center"><a class="except block text-center" href="'.$parent_permalink.'#'.$attslug.'-item-'.$attachment->ID.'">'.$atttitle.'</a></h3>';
+        echo '<div class="item mosaique small-12 medium-4 large-3">';
+        echo '<figure id="item-'.$attachment->ID.'" class="ligatures galerie">';
+        echo '<figcaption>';
         echo '<a class="uppercase except block text-center" href="'.$parent_permalink.'">'.$parent_title.'</a>';
-
+        echo '<h3 class="text-center"><a class="except block text-center" href="'.$parent_permalink.'#'.$attslug.'-item-'.$attachment->ID.'">'.$atttitle.'</a></h3>';
+        echo  the_terms($attachment->ID, 'subject');
         echo '</figcaption>';
-        echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img class="panel" src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
-        echo '<ul class="panel text-center small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
+        echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
+        echo '<ul class="details small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
   if ($detail1_th) {echo '<li><a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
   if ($detail2_th) {echo '<li><a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
   if ($detail3_th) {echo '<li><a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
         echo '</ul>';
-        echo '</figure>';
+        echo '</figure></div>';
         ?>
     <?php } ?>  
 <?php } ?>

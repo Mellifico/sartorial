@@ -41,25 +41,25 @@
 	<?php do_action('foundationPress_layout_start'); ?>
 
 
-<div class="fixed contain-to-grid">
+<div class="fixed">
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
     <li class="name">
       <h1><a href="<?php echo home_url(); ?>"><i class="fi-book-bookmark"></i>&nbsp;<?php echo __('The PG Guide', 'FoundationPress'); ?></a></h1>
     </li>
     <li class="divider"></li>
+    </ul>
 <section class="top-bar-section">
 <ul class="left">
 <li><?php apply_filters( 'wpml_element_link', 540 ); ?></li>
 <li class="divider"></li>
+</ul>
+<ul class="right">
 <li><select  name="seals-dropdown" onchange="document.location.href=this.options[this.selectedIndex].value;">
 <option value=""><?php echo esc_attr( __( 'Seals' ) ); ?></option> 
   <?php wp_get_archives( 'type=alpha&format=option' ); ?>
 </select></li>
 <li class="divider"></li>
-
-</ul>
-<ul class="right">
 <li><?php languages_list(); ?></li>
 </ul>
 </section>

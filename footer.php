@@ -1,12 +1,36 @@
 </section>
-
-<div class="wrapper main-footer">
-<footer class="row">
+<hr />
+<div class="wrapper row vert-padded main-footer">
+<footer>
 <div class="large-6 columns">
+<ul>
+<?php 
+$taxonomy     = 'subject';
+$orderby      = 'name'; 
+$show_count   = 1;      
+$pad_counts   = 0;      
+$hierarchical = false;    
+$title        = '';
+$hide_empty = false;
+$current_category = 1;
 
+$args = array(
+  'taxonomy'     => $taxonomy,
+  'orderby'      => $orderby,
+  'show_count'   => $show_count,
+  'pad_counts'   => $pad_counts,
+  'hierarchical' => $hierarchical,
+  'title_li'     => $title,
+  'hide_empty' => $hide_empty,
+  'current_category' => $current_category
+);
+ wp_list_categories( $args ); 
+?>
+</ul>
 	</div>
 <div class="large-6 columns">
-<h4><small><em>Récemment sur Parisian Gentleman&nbsp;:</small></em></h4>
+<h3><small><em>Récemment sur Parisian Gentleman&nbsp;:</small></em></h3>
+<hr />
 <?php 
 $rss = fetch_feed('http://parisiangentleman.fr/feed');
 
@@ -36,9 +60,9 @@ $short_desc = trim(str_replace(array("/r", "/n", "/t"), ' ', strip_tags($string)
     	if ($maxitems == 0) echo '<p>Nope!</p>';
     	else 
     	foreach ( $rss_items as $item ) : ?>
-<h5><small><a class="outline" href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'> <?php echo esc_html( $item->get_title() ); ?></a></small></h5>
-<span><?php echo $item->get_date('Y/m/d'); ?></span><br />
-	<span><?php echo shorten($item-> get_description(),'100');?></span><br />
+    <span><?php echo $item->get_date('d/m/Y'); ?></span>
+<h4><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'> <?php echo esc_html( $item->get_title() ); ?></a></small></h4>
+	<span><?php echo shorten($item-> get_description(),'100');?></span><br /><hr />
     <?php endforeach; ?>
 
 </div>	

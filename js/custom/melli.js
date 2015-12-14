@@ -51,6 +51,16 @@ $container.imagesLoaded( function() {
   });
 });
 
+
+var $container = $('#msnry-gallery-bottom').masonry();
+// layout Masonry again after all images have loaded
+$container.imagesLoaded( function() {
+  $container.masonry({
+    itemSelector: '.item',
+    isOriginTop: false
+  });
+});
+
 var $container_seals = $('#seals-wall').masonry();
 // layout Masonry again after all images have loaded
 $container_seals.imagesLoaded( function() {
