@@ -81,7 +81,7 @@ percentPosition: true
 
 // magnific popup
 $('.galerie').magnificPopup({
-  delegate: 'a:not(.except)', // child items selector, by clicking on it popup will open
+  delegate: 'a:not([rel="tag"])', // child items selector, by clicking on it popup will open
   type: 'image',
     gallery:{
     enabled:true

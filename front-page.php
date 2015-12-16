@@ -11,7 +11,7 @@
     	        array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => 'covers',
+            'terms'     => 'details',
             'operator'  => 'IN')
             ),
 );  
@@ -28,7 +28,7 @@ if ($bg_item) {
 		}
 
 	?>
-<div class="wrapper row CoverImage" style="background-image:url(<?php echo $bg_full[0]; ?>);">
+<div class="wrapper row pattern-pdp" data-equalizer>
     <?php
 $count_posts = baw_count_posts( 'post' );
 $published_posts = $count_posts->publish;
@@ -50,12 +50,12 @@ $all_items_loop = get_posts($all_items);
 $count_items = count($all_items_loop);
 ?>
 
-<div class="medium-6 large-6 columns bg-white">
+<div class="medium-6 large-6 columns bg-white" data-equalizer-watch>
 
 <div class="padded inline-block bg-white text-center">
 <h3 class="smallcaps text-center"><small>parisian gentleman;</small></h3>
 <h1 class="text-center"><?php echo __('The Guide', 'FoundationPress'); ?></h1>
-    <h2 class="text-center"><small><span><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?>, <?php echo __('illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></small></h2>
+    <h2 class="text-center"><small><span><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?>, <br /><?php echo __('illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></small></h2>
     <hr />
 <ul class="inline-list">
     <?php $args = array(
@@ -75,13 +75,13 @@ wp_get_archives( $args ); ?>
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'publish',
-    'numberposts' => 74,
+    'numberposts' => 32,
     'orderby' => 'rand',
         'tax_query' => array(
                 array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => 'details',
+            'terms'     => 'items',
             'operator'  => 'IN')
             ),
 );  
@@ -110,7 +110,7 @@ if ($attachments) {
     $parent_title = get_the_title( $parent_id );
     $parent_logo = get_the_post_thumbnail($parent_id, 'microthumb');
     $parent_permalink = get_permalink( $parent_id );
-    $itemlink = $parent_permalink.'#'.$attslug.'-item-detail-'.$attachment->ID;
+    $itemlink = $parent_permalink.'#'.$attslug.'-item-'.$attachment->ID;
     ?>
 
     <?php
@@ -132,9 +132,7 @@ if ($attachments) {
 
 
 </div>
-<div class="medium-6 large-6 columns">
-
-
+<div class="medium-6 large-6 columns CoverImage" style="background-image:url(<?php echo $bg_full[0]; ?>);" data-equalizer-watch>
 </div>
 
 </div>
@@ -163,46 +161,64 @@ if ($attachments) {
 
 </div>
 
-	<?php if ( function_exists('FoundationPress_pagination') ) { FoundationPress_pagination(); } else if ( is_paged() ) { ?>
-		<nav id="post-nav">
-			<div class="post-previous"><?php next_posts_link( __( '&larr; Older posts', 'FoundationPress' ) ); ?></div>
-			<div class="post-next"><?php previous_posts_link( __( 'Newer posts &rarr;', 'FoundationPress' ) ); ?></div>
-		</nav>
-	<?php } ?>
 
 
 </div>
 </div>
-    <?php $random_detail = array(
-    'post_type' => 'attachment',
-    'post_mime_type' => 'image',
-    'post_status' => 'publish',
-    'numberposts' => 1,
-    'orderby' => 'rand',
-        'tax_query' => array(
-                array(
-            'taxonomy'  => 'classification',
-            'field'     => 'slug',
-            'terms'     => 'details',
-            'operator'  => 'IN')
-            ),
-);  
-$bg_detail = get_posts($random_detail);
+ <hr />
+<div class="wrapper row">
+ 
+ <div class="medium-6 large-6 columns">
+    <?php
 
-?>
-<?php 
-if ($bg_detail) {
-    foreach ($bg_detail as $bg_d) {
+    $recentPosts = new WP_Query();
 
-    $bg_d_full = wp_get_attachment_image_src($bg_d->ID,'full');
+    $args = array(
 
-            }
-             wp_reset_postdata();
-        }
+    'posts_per_page'      => 1,
+    'post__in'            => get_option( 'sticky_posts' ),
+    'ignore_sticky_posts' => 1,
+
+    );
+
+    $recentPosts->query($args);
+
+    while ($recentPosts->have_posts()) : $recentPosts->the_post();
 
     ?>
-<div class="wrapper brand CoverImage bg-fixed FlexEmbed FlexEmbed--5by1 alphalayer" style="background-image:url(<?php echo $bg_d_full[0]; ?>);">
+<?php
+     $defaults = array(
+            'post_type'      => 'attachment',
+            'post_parent'    => $post->ID,
+            'post_mime_type' => 'image',
+            'post_status'    => null,
+            'numberposts'    => 1,
+            'tax_query' => array(
+                array(
+                    'taxonomy'  => 'classification',
+                    'field'     => 'slug',
+                    'terms'     => 'covers'
+                    )
+                    ),
+        );
+        $cover_info = get_posts($defaults);
 
+        if ($cover_info) {
+            foreach ($cover_info as $sealcover) {
+                $attcover_large  = wp_get_attachment_image_src($sealcover->ID,'large');  
+            }
+        }
+?>
+    <div class="padded text-center CoverImage" style="background-image:url(<?php echo $attcover_large[0]; ?>);">
+
+   <h5 class="panel">Entrée récente&nbsp;:<br /><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h5>
+  
+    
+  </div>
+    <?php endwhile; ?>
+    </div>
+    <div class="medium-6 large-6 columns"></div> 
+    </div>
 </div>
 
 

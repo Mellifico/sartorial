@@ -2,7 +2,10 @@
 <hr />
 <div class="wrapper row vert-padded main-footer">
 <footer>
-<div class="large-6 columns">
+<div class="medium-3 large-3 columns">
+<ul>
+<?php wp_list_pages('title_li='); ?>
+</ul>
 <ul>
 <?php 
 $taxonomy     = 'subject';
@@ -28,8 +31,8 @@ $args = array(
 ?>
 </ul>
 	</div>
-<div class="large-6 columns">
-<h3><small><em>Récemment sur Parisian Gentleman&nbsp;:</small></em></h3>
+<div class="medium-6 large-6 columns">
+<h5>Récemment sur Parisian Gentleman</h5>
 <hr />
 <?php 
 $rss = fetch_feed('http://parisiangentleman.fr/feed');
@@ -60,11 +63,32 @@ $short_desc = trim(str_replace(array("/r", "/n", "/t"), ' ', strip_tags($string)
     	if ($maxitems == 0) echo '<p>Nope!</p>';
     	else 
     	foreach ( $rss_items as $item ) : ?>
-    <span><?php echo $item->get_date('d/m/Y'); ?></span>
-<h4><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'> <?php echo esc_html( $item->get_title() ); ?></a></small></h4>
+    <span><i class="fi-calendar"></i>&nbsp;<?php echo $item->get_date('d/m/Y'); ?></span>
+<h4><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'><i class="fi-link"></i>&nbsp;<?php echo esc_html( $item->get_title() ); ?></a></small></h4>
 	<span><?php echo shorten($item-> get_description(),'100');?></span><br /><hr />
     <?php endforeach; ?>
-
+<hr />
+<h4>éléments de lexique</h4>
+<?php $args_lexic = array( 'post_type' => 'lexicon', 'posts_per_page' => 10 ); 
+$loop = new WP_Query( $args_lexic );
+while ( $loop->have_posts() ) : $loop->the_post();
+  echo '<h5>';
+  the_title();
+  echo '</h5>';
+  echo '<div class="entry-content">';
+  the_content();
+  echo '</div>';
+endwhile; ?>
+</div>
+<div class="medium-3 large-3 columns">
+<h5>Parisian Gentleman Social Network</h5>
+	            <ul class="no-bullet">
+              <li><a href="https://www.facebook.com/pages/Parisian-Gentleman-the-french-voice-of-sartorial-excellence/116830841661701" rel="me"><i class="fi-social-facebook"></i>&nbsp;Facebook</a></li>
+              <li><a href="https://twitter.com/Parisian_Gent" rel="me"><i class="fi-social-twitter"></i>&nbsp;Twitter</a></li>
+              <li><a href="https://www.youtube.com/channel/UC4JvjWZ80HF-X6rqJULo-EQ" rel="me"><i class="fi-social-youtube"></i>&nbsp;YouTube</a></li>
+              <li><a href="http://parisiangentleman.tumblr.com/" rel="me"><i class="fi-social-tumblr"></i>&nbsp;Tumblr</a></li>
+              <li><a href="https://instagram.com/parisian_gentleman/" rel="me"><i class="fi-social-instagram"></i>&nbsp;Instagram</a></li>
+            </ul>
 </div>	
 </footer>
 </div>

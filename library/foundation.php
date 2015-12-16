@@ -28,9 +28,9 @@ function FoundationPress_pagination() {
 
 	// Display the pagination if more than one page is found
 	if ( $paginate_links ) {
-		echo '<div class="pagination-centered">';
+		echo '<hr /><div class="pagination-centered">';
 		echo $paginate_links;
-		echo '</div><!--// end .pagination -->';
+		echo '</div><hr /><!--// end .pagination -->';
 	}
 }
 

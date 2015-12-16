@@ -15,8 +15,8 @@
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'publish',
-    'numberposts' => 42,
-    'offset' => 42 * ($current - 1),
+    'numberposts' => 20,
+    'offset' => 20 * ($current - 1),
     'suppress_filters' => false,
     'orderby' => 'rand',
     'tax_query' => array(
@@ -31,11 +31,11 @@
 $pagination = array(
   'base' => @add_query_arg( 'page', '%#%' ),
   'format' => '',
-  'total' => wp_count_posts('attachment')->inherit / 42,
+  'total' => wp_count_posts('attachment')->inherit / 20,
   'current' => $current,
   'show_all' => false,
-  'end_size' => 1,
-  'mid_size' => 2,
+  'end_size' => 0,
+  'mid_size' => 0,
   'type' => 'list',
   'before_page_number' => '&#123;',
   'after_page_number' => '&#125;',
@@ -84,10 +84,13 @@ if ($attachments) {
         echo '<div class="item mosaique small-12 medium-4 large-3">';
         echo '<figure id="item-'.$attachment->ID.'" class="ligatures galerie">';
         echo '<figcaption>';
-        echo '<a class="uppercase except block text-center" href="'.$parent_permalink.'">'.$parent_title.'</a>';
+        echo '<a class="uppercase except block text-center" href="'.$parent_permalink.'"><i class="fi-home"></i>&nbsp;'.$parent_title.'</a>';
         echo '<h3 class="text-center"><a class="except block text-center" href="'.$parent_permalink.'#'.$attslug.'-item-'.$attachment->ID.'">'.$atttitle.'</a></h3>';
+        echo '<hr />';
+        echo apply_filters('the_title', $attachment->post_content);
+        echo '<hr /><span class="label info">';
         echo  the_terms($attachment->ID, 'subject');
-        echo '</figcaption>';
+        echo '</span></figcaption>';
         echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
         echo '<ul class="details small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
   if ($detail1_th) {echo '<li><a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }

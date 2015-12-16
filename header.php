@@ -60,6 +60,32 @@
   <?php wp_get_archives( 'type=alpha&format=option' ); ?>
 </select></li>
 <li class="divider"></li>
+<li>
+	<form id="subject-select" class="subject-select" action="<?php echo esc_url( home_url( '/' ) ); ?>/subject/" method="get">
+
+		<?php
+		$args = array(
+			'taxonomy' => 'subject',
+			'show_option_none' => __( 'Subjects', 'FoundationPress' ),
+			'show_count'       => 1,
+			'orderby'          => 'name',
+			'echo'             => 0,
+			'hide_empty' => false,
+		);
+		?>
+
+		<?php $select  = wp_dropdown_categories( $args ); ?>
+		<?php $replace = "<select$1 onchange='return this.form.submit()'>"; ?>
+		<?php $select  = preg_replace( '#<select([^>]*)>#', $replace, $select ); ?>
+
+		<?php echo $select; ?>
+
+		<noscript>
+			<input type="submit" value="View" />
+		</noscript>
+
+	</form>
+</li>
 <li><?php languages_list(); ?></li>
 </ul>
 </section>
