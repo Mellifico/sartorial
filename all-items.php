@@ -52,7 +52,8 @@ $attachments = get_posts($args);
 $post_count = count ($attachments);
 ?>
 <div class="wrapper">
-<h1 id="big" class="text-center"><?php apply_filters( 'wpml_element_link', 540 ); ?></h1>
+<h1 id="big" class="text-center"><?php apply_filters( 'wpml_element_link', 540 ); ?><br /><i class="fi-eye"></i></h1>
+<div class="text-center"><?php the_content(); ?></div>
 <div class="text-center"><?php echo paginate_links($pagination); ?></div>
 <div id="msnry-gallery" class="bg-light-min">
 <?php 
@@ -91,18 +92,18 @@ if ($attachments) {
         echo '<hr /><span class="label info">';
         echo  the_terms($attachment->ID, 'subject');
         echo '</span></figcaption>';
-        echo '<a title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
+        echo '<a class="pop" title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';
         echo '<ul class="details small-block-grid-3 medium-block-grid-3 large-block-grid-3">';
-  if ($detail1_th) {echo '<li><a class="th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-  if ($detail2_th) {echo '<li><a class="th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
-  if ($detail3_th) {echo '<li><a class="th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+  if ($detail1_th) {echo '<li><a class="pop th" href="'.$detail1_full[0].'"><img src="'.$detail1_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+  if ($detail2_th) {echo '<li><a class="pop th" href="'.$detail2_full[0].'"><img src="'.$detail2_th[0].'" alt="'.$img_title.'" /></a></li>'; }
+  if ($detail3_th) {echo '<li><a class="pop th" href="'.$detail3_full[0].'"><img src="'.$detail3_th[0].'" alt="'.$img_title.'" /></a></li>'; }
         echo '</ul>';
         echo '</figure></div>';
         ?>
     <?php } ?>  
 <?php } ?>
 </div>
-<?php echo paginate_links($pagination); ?>
+<div class="text-center"><?php echo paginate_links($pagination); ?></div>
 
 </div>
 

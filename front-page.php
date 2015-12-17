@@ -58,7 +58,7 @@ $count_items = count($all_items_loop);
     <h2 class="text-center"><small><span><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?>, <br /><?php echo __('illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></small></h2>
     <hr />
 <ul class="inline-list">
-    <?php $args = array(
+    <?php $args_seals = array(
     'type'            => 'alpha',
     'limit'           => '',
     'format'          => 'html', 
@@ -68,10 +68,10 @@ $count_items = count($all_items_loop);
     'echo'            => 1,
     'order'           => 'DESC'
 );
-wp_get_archives( $args ); ?>
+wp_get_archives( $args_seals ); ?>
 </ul>
 <hr />
-<?php $args = array(
+<?php $args_micro = array(
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'publish',
@@ -86,7 +86,7 @@ wp_get_archives( $args ); ?>
             ),
 );  
 
-$attachments = get_posts($args);
+$attachments = get_posts($args_micro);
 $attachments_count = count($attachments);
 ?>
 
@@ -114,7 +114,7 @@ if ($attachments) {
     ?>
 
     <?php
-        echo '<a data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top" class="item small-3 medium-2 large-1">
+        echo '<div class="item-small small-3 medium-2 large-1"><a data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top">
         <img id="item-'.$attachment->ID.'"
           src="'.$attimg_micro[0].'"
            alt="'.$parent_title.'" class="full" /></a>';
@@ -122,7 +122,7 @@ if ($attachments) {
         <ul id="<?php echo 'img-'.$attachment->ID.'-infos';?>" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
         <li><a href="<?php echo $parent_permalink; ?>"><?php echo $parent_logo ?>&nbsp;<?php echo $parent_title; ?></a></li>
         <li><a href="<?php echo $itemlink; ?>"><?php echo $atttitle; ?></a></li>    
-        </ul>
+        </ul></div>
     <?php } ?>  
    
 <?php } ?>
@@ -137,7 +137,7 @@ if ($attachments) {
 
 </div>
 
-</div>
+
 
 <div class="wrapper seals">
 	
@@ -173,7 +173,7 @@ if ($attachments) {
 
     $recentPosts = new WP_Query();
 
-    $args = array(
+    $args_sticky = array(
 
     'posts_per_page'      => 1,
     'post__in'            => get_option( 'sticky_posts' ),
@@ -181,7 +181,7 @@ if ($attachments) {
 
     );
 
-    $recentPosts->query($args);
+    $recentPosts->query($args_sticky);
 
     while ($recentPosts->have_posts()) : $recentPosts->the_post();
 

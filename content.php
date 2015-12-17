@@ -9,13 +9,8 @@
 
 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="seal small-6 medium-3 large-2">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-<header>
 <div class="full">
-			<?php if ( has_post_thumbnail() ): ?>
-				<?php the_post_thumbnail('full'); ?>
-			<?php elseif ( !has_post_thumbnail() ): ?>
-				<?php lorempixel(); ?>
-			<?php endif; ?>
+		<?php the_post_thumbnail('full'); ?>
 			</div>
 				<?php 
 		$cover = array(
@@ -43,6 +38,5 @@
 			}
 		}
 		?>
-	</header>
 </article>
 </a>

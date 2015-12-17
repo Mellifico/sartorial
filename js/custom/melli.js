@@ -52,11 +52,11 @@ $container.imagesLoaded( function() {
 });
 
 
-var $container = $('#msnry-gallery-bottom').masonry();
+var $container_bottom = $('#msnry-gallery-bottom').masonry();
 // layout Masonry again after all images have loaded
-$container.imagesLoaded( function() {
-  $container.masonry({
-    itemSelector: '.item',
+$container_bottom.imagesLoaded( function() {
+  $container_bottom.masonry({
+    itemSelector: '.item-small',
     isOriginTop: false
   });
 });
@@ -81,7 +81,7 @@ percentPosition: true
 
 // magnific popup
 $('.galerie').magnificPopup({
-  delegate: 'a:not([rel="tag"])', // child items selector, by clicking on it popup will open
+  delegate: 'a.pop', // child items selector, by clicking on it popup will open
   type: 'image',
     gallery:{
     enabled:true
