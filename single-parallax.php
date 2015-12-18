@@ -132,7 +132,7 @@ if ($attachments) {
 	
 
         echo '<div class="content content-full" id="'.$attslug.'-item-'.$attachment->ID.'">';
-        echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center"><i class="fi-puzzle"></i>&nbsp;'.$atttitle.'</h2>';
+        echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center"><i class="fi-ticket"></i>&nbsp;'.$atttitle.'</h2>';
         echo '<div class="row"><div class="medium-8 medium-centered large-6 large-centered columns">';
           
         echo '<ul class="text-center skrollr-popup small-block-grid-4 medium-block-grid-4 large-block-grid-4">';

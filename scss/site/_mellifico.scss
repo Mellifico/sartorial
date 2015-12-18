@@ -285,7 +285,7 @@ font-variant: small-caps;
 }
 a.outline:link, a.outline:visited, a.outline:focus, a.outline:active {
   outline-width: 1px;
-  outline-style: dotted;
+  outline-style: solid;
   outline-offset: 0px;
       -webkit-transition: all 0.2s ease-out;
      -moz-transition: all 0.2s ease-out; 
@@ -303,7 +303,7 @@ a.outline:hover {
   outline-width: 1px;
     outline-style: solid;
  outline-color: $base03;
- outline-offset: 2px;
+ outline-offset: 1px;
  z-index:10;
 }   
 a.outline:focus  {
