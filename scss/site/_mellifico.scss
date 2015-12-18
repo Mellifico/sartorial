@@ -1,3 +1,9 @@
+.small-typo {
+  font-size: 90%;
+}
+.small-lh {
+  line-height: 1;
+}
 .f-dropdown {
   outline:none;
 }
@@ -297,7 +303,8 @@ a.outline:hover {
   outline-width: 1px;
     outline-style: solid;
  outline-color: $base03;
- outline-offset: 5px;
+ outline-offset: 2px;
+ z-index:10;
 }   
 a.outline:focus  {
   outline-color: $yellow;
@@ -353,7 +360,8 @@ a {
     line-height: 0.75;
   }
   .seal {
-    padding: 0;
+    padding: 0px;
+    margin:0px;
   }
 
 
@@ -363,8 +371,7 @@ a {
   }
 
   .seal article {
-    padding: 5px;
-
+    padding: 20px;
   }
 .page-numbers li {
   display: inline-block;

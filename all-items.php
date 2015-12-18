@@ -52,7 +52,7 @@ $attachments = get_posts($args);
 $post_count = count ($attachments);
 ?>
 <div class="wrapper">
-<h1 id="big" class="text-center"><?php apply_filters( 'wpml_element_link', 540 ); ?><br /><i class="fi-eye"></i></h1>
+<h1 id="big" class="text-center"><i class="fi-eye"></i>&nbsp;<?php apply_filters( 'wpml_element_link', 540 ); ?></h1>
 <div class="text-center"><?php the_content(); ?></div>
 <div class="text-center"><?php echo paginate_links($pagination); ?></div>
 <div id="msnry-gallery" class="bg-light-min">
@@ -85,11 +85,11 @@ if ($attachments) {
         echo '<div class="item mosaique small-12 medium-4 large-3">';
         echo '<figure id="item-'.$attachment->ID.'" class="ligatures galerie">';
         echo '<figcaption>';
-        echo '<a class="uppercase except block text-center" href="'.$parent_permalink.'"><i class="fi-home"></i>&nbsp;'.$parent_title.'</a>';
+        echo '<a class="uppercase except block text-center" href="'.$parent_permalink.'"><i class="fi-home"></i>&nbsp;&nbsp;'.$parent_title.'</a>';
         echo '<h3 class="text-center"><a class="except block text-center" href="'.$parent_permalink.'#'.$attslug.'-item-'.$attachment->ID.'">'.$atttitle.'</a></h3>';
         echo '<hr />';
         echo apply_filters('the_title', $attachment->post_content);
-        echo '<hr /><span class="label info">';
+        echo '<hr /><span class="label">';
         echo  the_terms($attachment->ID, 'subject');
         echo '</span></figcaption>';
         echo '<a class="pop" title="'.$atttitle.'" href="'.$attimg_full[0].'"><img src="'.$attimg_medium[0].'" alt="'.$atttitle.'"/></a>';

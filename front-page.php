@@ -28,7 +28,7 @@ if ($bg_item) {
 		}
 
 	?>
-<div class="wrapper row pattern-pdp" data-equalizer>
+<div class="wrapper row pattern-cube" data-equalizer>
     <?php
 $count_posts = baw_count_posts( 'post' );
 $published_posts = $count_posts->publish;
@@ -114,7 +114,7 @@ if ($attachments) {
     ?>
 
     <?php
-        echo '<div class="item-small small-3 medium-2 large-1"><a data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top">
+        echo '<a class="item-small small-3 medium-2 large-1" data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top">
         <img id="item-'.$attachment->ID.'"
           src="'.$attimg_micro[0].'"
            alt="'.$parent_title.'" class="full" /></a>';
@@ -122,7 +122,7 @@ if ($attachments) {
         <ul id="<?php echo 'img-'.$attachment->ID.'-infos';?>" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
         <li><a href="<?php echo $parent_permalink; ?>"><?php echo $parent_logo ?>&nbsp;<?php echo $parent_title; ?></a></li>
         <li><a href="<?php echo $itemlink; ?>"><?php echo $atttitle; ?></a></li>    
-        </ul></div>
+        </ul>
     <?php } ?>  
    
 <?php } ?>
@@ -137,38 +137,10 @@ if ($attachments) {
 
 </div>
 
-
-
-<div class="wrapper seals">
-	
-<div role="main">
-
-<div id="seals-wall">
-
-	<?php if ( have_posts() ) : ?>
- 
-		<?php do_action('foundationPress_before_content'); ?>
-		<?php query_posts('orderby=rand'); ?>
-		<?php while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part( 'content', get_post_format() ); ?>
-		<?php endwhile; ?>
-
-		<?php else : ?>
-			<?php get_template_part( 'content', 'none' ); ?>
-
-
-	<?php endif;?>
-
-</div>
-
-
-
-</div>
-</div>
  <hr />
-<div class="wrapper row">
+<div class="wrapper row pattern-pdp" data-equalizer>
  
- <div class="medium-6 large-6 columns">
+ <div class="medium-6 large-6 columns" data-equalizer-watch>
     <?php
 
     $recentPosts = new WP_Query();
@@ -209,16 +181,46 @@ if ($attachments) {
             }
         }
 ?>
-    <div class="padded text-center CoverImage" style="background-image:url(<?php echo $attcover_large[0]; ?>);">
+    <div class="padded text-center">
 
-   <h5 class="panel">Entrée récente&nbsp;:<br /><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h5>
-  
+   <h3 class="panel">Entrée récente&nbsp;:<br /><a class="button large" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
+   <br /><?php the_post_thumbnail('full'); ?></h3>
     
   </div>
     <?php endwhile; ?>
     </div>
-    <div class="medium-6 large-6 columns"></div> 
+    <div class="medium-6 large-6 columns CoverImage" style="background-image:url(<?php echo $attcover_large[0]; ?>);" data-equalizer-watch></div> 
     </div>
+<hr />
+<div class="wrapper seals">
+	
+<div role="main">
+
+<div id="seals-wall">
+
+	<?php if ( have_posts() ) : ?>
+ 
+		<?php do_action('foundationPress_before_content'); ?>
+        <?php $args_seals = array (
+            'orderby' => 'rand',
+            'post__not_in' => get_option('sticky_posts')
+        );?>
+		<?php query_posts($args_seals); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
+			<?php get_template_part( 'content', get_post_format() ); ?>
+		<?php endwhile; ?>
+
+		<?php else : ?>
+			<?php get_template_part( 'content', 'none' ); ?>
+
+
+	<?php endif;?>
+
+</div>
+
+
+
+</div>
 </div>
 
 

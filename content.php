@@ -7,8 +7,8 @@
  */
 ?>
 
-<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="seal small-6 medium-3 large-2">
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="seal outline small-6 medium-3 large-2">
+<article id="post-<?php the_ID(); ?>" <?php post_class('bg-light-min'); ?>>
 <div class="full">
 		<?php the_post_thumbnail('full'); ?>
 			</div>

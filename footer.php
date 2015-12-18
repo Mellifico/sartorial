@@ -3,10 +3,10 @@
 <div class="wrapper row vert-padded main-footer">
 <footer>
 <div class="medium-3 large-3 columns">
-<ul>
+<ul class="small-typo circle">
 <?php wp_list_pages('title_li='); ?>
 </ul>
-<ul>
+<ul class="small-typo circle">
 <?php 
 $taxonomy     = 'subject';
 $orderby      = 'name'; 
@@ -63,8 +63,8 @@ $short_desc = trim(str_replace(array("/r", "/n", "/t"), ' ', strip_tags($string)
     	if ($maxitems == 0) echo '<p>Nope!</p>';
     	else 
     	foreach ( $rss_items as $item ) : ?>
-    <span><i class="fi-calendar"></i>&nbsp;<?php echo $item->get_date('d/m/Y'); ?></span>
-<h4><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'><i class="fi-link"></i>&nbsp;<?php echo esc_html( $item->get_title() ); ?></a></small></h4>
+    <span class="label"><i class="fi-calendar"></i>&nbsp;<?php echo $item->get_date('d/m/Y'); ?></span>
+<h4 class="small-lh"><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'><i class="fi-link"></i>&nbsp;<?php echo esc_html( $item->get_title() ); ?></a></small></h4>
 	<span><?php echo shorten($item-> get_description(),'100');?></span><br /><hr />
     <?php endforeach; ?>
 <hr />
@@ -72,7 +72,7 @@ $short_desc = trim(str_replace(array("/r", "/n", "/t"), ' ', strip_tags($string)
 <?php $args_lexic = array( 'post_type' => 'lexicon', 'posts_per_page' => 10 ); 
 $loop = new WP_Query( $args_lexic );
 while ( $loop->have_posts() ) : $loop->the_post();
-  echo '<h5>';
+  echo '<h5 class="uppercase">';
   the_title();
   echo '</h5>';
   echo '<div class="entry-content">';
