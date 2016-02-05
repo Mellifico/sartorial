@@ -5,30 +5,20 @@
     'post_type' => 'attachment',
     'post_mime_type' => 'image',
     'post_status' => 'publish',
-    'numberposts' => 1,
+    'numberposts' => 6,
     'orderby' => 'rand',
     	'tax_query'	=> array(
     	        array(
             'taxonomy'  => 'classification',
             'field'     => 'slug',
-            'terms'     => 'details',
+            'terms'     => 'items',
             'operator'  => 'IN')
             ),
 );  
 $bg_item = get_posts($random_item);
 ?>
-<?php 
-if ($bg_item) {
-    foreach ($bg_item as $bg) {
 
-    $bg_full = wp_get_attachment_image_src($bg->ID,'full');
-
-			}
-             wp_reset_postdata();
-		}
-
-	?>
-<div class="wrapper row pattern-cube" data-equalizer>
+<div class="wrapper row">
     <?php
 $count_posts = baw_count_posts( 'post' );
 $published_posts = $count_posts->publish;
@@ -50,98 +40,46 @@ $all_items_loop = get_posts($all_items);
 $count_items = count($all_items_loop);
 ?>
 
-<div class="medium-6 large-6 columns bg-white" data-equalizer-watch>
+<div class="top-centered bg-white">
 
-<div class="padded inline-block bg-white text-center">
-<h3 class="smallcaps text-center"><small>parisian gentleman;</small></h3>
-<h1 class="text-center"><?php echo __('The Guide', 'FoundationPress'); ?></h1>
-    <h2 class="text-center"><small><span><?php echo $published_posts; ?></span> <?php echo __('Seals of Quality', 'FoundationPress'); ?>, <br /><?php echo __('illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></small></h2>
-    <hr />
-<ul class="inline-list">
-    <?php $args_seals = array(
-    'type'            => 'alpha',
-    'limit'           => '',
-    'format'          => 'html', 
-    'before'          => '',
-    'after'           => '',
-    'show_post_count' => false,
-    'echo'            => 1,
-    'order'           => 'DESC'
-);
-wp_get_archives( $args_seals ); ?>
-</ul>
-<hr />
-<?php $args_micro = array(
-    'post_type' => 'attachment',
-    'post_mime_type' => 'image',
-    'post_status' => 'publish',
-    'numberposts' => 32,
-    'orderby' => 'rand',
-        'tax_query' => array(
-                array(
-            'taxonomy'  => 'classification',
-            'field'     => 'slug',
-            'terms'     => 'items',
-            'operator'  => 'IN')
-            ),
-);  
-
-$attachments = get_posts($args_micro);
-$attachments_count = count($attachments);
-?>
-
-<div id="msnry-gallery-bottom">
-<?php 
-if ($attachments) {
-    foreach ($attachments as $attachment) {
-
-    $img = wp_get_attachment_thumb_url($attachment->ID);
-    $title = get_the_title($attachment->post_parent);
-    $attimg_micro = wp_get_attachment_image_src($attachment->ID,'microthumb');
-    $attimg_th = wp_get_attachment_image_src($attachment->ID,'thumbnail');
-    $attimg_medium = wp_get_attachment_image_src($attachment->ID,'medium');
-    $attimg_large = wp_get_attachment_image_src($attachment->ID,'large');
-    $attimg_full = wp_get_attachment_image_src($attachment->ID,'full');
-    $atturl = wp_get_attachment_url($attachment->ID);
-    $attlink = get_attachment_link($attachment->ID);
-    $atttitle = apply_filters('the_title',$attachment->post_title);
-    $attslug = sanitize_title($atttitle);
-    $parent_id = $attachment->post_parent;
-    $parent_title = get_the_title( $parent_id );
-    $parent_logo = get_the_post_thumbnail($parent_id, 'microthumb');
-    $parent_permalink = get_permalink( $parent_id );
-    $itemlink = $parent_permalink.'#'.$attslug.'-item-'.$attachment->ID;
-    ?>
-
-    <?php
-        echo '<a class="item-small small-3 medium-2 large-1" data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top">
-        <img id="item-'.$attachment->ID.'"
-          src="'.$attimg_micro[0].'"
-           alt="'.$parent_title.'" class="full" /></a>';
-        ?>
-        <ul id="<?php echo 'img-'.$attachment->ID.'-infos';?>" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
-        <li><a href="<?php echo $parent_permalink; ?>"><?php echo $parent_logo ?>&nbsp;<?php echo $parent_title; ?></a></li>
-        <li><a href="<?php echo $itemlink; ?>"><?php echo $atttitle; ?></a></li>    
-        </ul>
-    <?php } ?>  
-   
-<?php } ?>
-</div>
+<div class="padded text-center">
+<h1 class="text-center"><i class="fi-book-bookmark"></i>&nbsp;<?php echo __('The Guide', 'FoundationPress'); ?></h1>
+<h2 class="text-center small-lh"><small><span><em><?php echo $published_posts; ?></em></span> <em><?php echo __('Seals of Quality', 'FoundationPress'); ?> <br /><?php echo __('illustrated with', 'FoundationPress'); ?> <?php echo $count_items; ?> <?php echo __('pictures', 'FoundationPress'); ?></em></small></h2>
+<h4 class="smallcaps text-center"><small><sub>Une sélection de</sub><br /><a href="http://parisiangentleman.fr/">parisian gentleman;</a>
+<br />&copy; <?php
+$fromyear = 2009;
+$thisyear = (int)date('Y');
+echo $fromyear . (($fromyear != $thisyear) ? '-' . $thisyear : ''); ?>
+</small></h4>
 </div>
   
 
 
 </div>
-<div class="medium-6 large-6 columns CoverImage" style="background-image:url(<?php echo $bg_full[0]; ?>);" data-equalizer-watch>
-</div>
+
+<div class="main-slider">
+<?php 
+if ($bg_item) {
+    foreach ($bg_item as $bg) {
+    $title = get_the_title($bg->post_parent);
+    $atttitle = apply_filters('the_title',$bg->post_title);
+    $bg_full = wp_get_attachment_image_src($bg->ID,'full');
+echo '<div class="CoverImage full-h" style="background-image:url('.$bg_full[0].');">';
+echo '<div class="bg-white inline-block bottom-right padded text-center"><em>'.$atttitle.'</em><br /><strong class="uppercase">'.$title.'</strong></div>';
+echo '</div>';
+            }
+        }
+
+    ?>
+    </div>
+
 
 </div>
 
- <hr />
-<div class="wrapper row pattern-pdp" data-equalizer>
- 
- <div class="medium-6 large-6 columns" data-equalizer-watch>
-    <?php
+<hr />
+
+<div class="wrapper row">
+     <?php
 
     $recentPosts = new WP_Query();
 
@@ -181,17 +119,28 @@ if ($attachments) {
             }
         }
 ?>
-    <div class="padded text-center">
-
-   <h3 class="panel">Entrée récente&nbsp;:<br /><a class="button large" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
-   <br /><?php the_post_thumbnail('full'); ?></h3>
+    <div class="medium-12 large-12 columns CoverImage full-h" style="background-image:url(<?php echo $attcover_large[0]; ?>);">
     
-  </div>
+        <div class="padded text-center centered">
+
+   <h3 class="panel">Entrée récente&nbsp;:
+   <br /><?php the_post_thumbnail('full'); ?>
+   <br /><a class="button large" href="<?php the_permalink(); ?>" title="Voir <?php the_title_attribute(); ?>">Voir <?php the_title(); ?></a>
+   </h3>
+    
+  </div>    
+
+    </div> 
+    
+ 
+
+
     <?php endwhile; ?>
+
+
     </div>
-    <div class="medium-6 large-6 columns CoverImage" style="background-image:url(<?php echo $attcover_large[0]; ?>);" data-equalizer-watch></div> 
-    </div>
-<hr />
+
+
 <div class="wrapper seals">
 	
 <div role="main">

@@ -36,7 +36,7 @@
 
 		<article <?php post_class('wrapper'); ?> id="post-<?php the_ID(); ?>">
 		<figure class="text-center"><?php the_post_thumbnail('medium'); ?></figure>
-		<h1 id="big" class="text-center uppercase"><?php the_title(); ?></h1>
+		<h1 id="big" class="text-center uppercase"><i class="fi-bookmark"></i>&nbsp;<?php the_title(); ?></h1>
 			<div class="row">
 			<div class="large-12 columns">
 
@@ -132,7 +132,7 @@ if ($attachments) {
 	
 
         echo '<div class="content content-full" id="'.$attslug.'-item-'.$attachment->ID.'">';
-        echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center"><i class="fi-ticket"></i>&nbsp;'.$atttitle.'</h2>';
+        echo '<div id="properties" data-top-bottom="opacity:0;display:none;" data-top="top:10%;" data-center="top:5%;opacity:1;" data-bottom="display:block;opacity:0.8" data-bottom-top="top:-25%;opacity:0;display:none;"><h2 class="fattext text-center"><i class="fi-price-tag"></i>&nbsp;'.$atttitle.'</h2>';
         echo '<div class="row"><div class="medium-8 medium-centered large-6 large-centered columns">';
           
         echo '<ul class="text-center skrollr-popup small-block-grid-4 medium-block-grid-4 large-block-grid-4">';

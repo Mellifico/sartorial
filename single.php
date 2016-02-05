@@ -102,7 +102,7 @@ if ($attachments) {
 	$detail3_full = wp_get_attachment_image_src(get_field('item_detail_3', $attachment->ID), 'full');
 	
         echo '<div id="'.$attslug.'-item-'.$attachment->ID.'" class="ligatures galerie wrapper row bg-light-min">';
-        echo '<h3 class="text-center fattext"><i class="fi-puzzle"></i>&nbsp;'.$atttitle.'</h3>';
+        echo '<h3 class="text-center fattext"><i class="fi-bookmark"></i>&nbsp;'.$atttitle.'</h3>';
         echo apply_filters('the_title', $attachment->post_content);
         echo '<ul class="text-center small-block-grid-2 medium-block-grid-2 large-block-grid-2">';
         echo '<li><img src="'.$attimg_large[0].'" alt="'.$atttitle.'"/></li>';

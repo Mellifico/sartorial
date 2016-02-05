@@ -1,12 +1,25 @@
 </section>
 <hr />
-<div class="wrapper row vert-padded main-footer">
+<div class="wrapper row vert-padded main-footer bg-light-min">
 <footer>
 <div class="medium-3 large-3 columns">
-<ul class="small-typo circle">
-<?php wp_list_pages('title_li='); ?>
+    <hr />
+<ul class="inline-list">
+    <?php $args_seals = array(
+    'type'            => 'alpha',
+    'limit'           => '',
+    'format'          => 'html', 
+    'before'          => '',
+    'after'           => '',
+    'show_post_count' => false,
+    'echo'            => 1,
+    'order'           => 'DESC'
+);
+wp_get_archives( $args_seals ); ?>
 </ul>
-<ul class="small-typo circle">
+<hr />
+
+<ul class="square">
 <?php 
 $taxonomy     = 'subject';
 $orderby      = 'name'; 
@@ -30,8 +43,13 @@ $args = array(
  wp_list_categories( $args ); 
 ?>
 </ul>
+<hr />
+<ul class="circle">
+<?php wp_list_pages('title_li='); ?>
+</ul>
 	</div>
 <div class="medium-6 large-6 columns">
+
 <h5>Récemment sur Parisian Gentleman</h5>
 <hr />
 <?php 
@@ -63,8 +81,8 @@ $short_desc = trim(str_replace(array("/r", "/n", "/t"), ' ', strip_tags($string)
     	if ($maxitems == 0) echo '<p>Nope!</p>';
     	else 
     	foreach ( $rss_items as $item ) : ?>
-    <span class="label"><i class="fi-calendar"></i>&nbsp;<?php echo $item->get_date('d/m/Y'); ?></span>
-<h4 class="small-lh"><small><a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'><i class="fi-link"></i>&nbsp;<?php echo esc_html( $item->get_title() ); ?></a></small></h4>
+    
+<h4 class="small-lh"><small><?php echo $item->get_date('d/m/Y'); ?>&nbsp;<a  href='<?php echo esc_url( $item->get_permalink() ); ?>' title='<?php echo esc_html( $item->get_title() ); ?>'>&nbsp;<i class="fi-link"></i>&nbsp;<?php echo esc_html( $item->get_title() ); ?></a></small></h4>
 	<span><?php echo shorten($item-> get_description(),'100');?></span><br /><hr />
     <?php endforeach; ?>
 <hr />
@@ -79,6 +97,64 @@ while ( $loop->have_posts() ) : $loop->the_post();
   the_content();
   echo '</div>';
 endwhile; ?>
+
+<?php $args_micro = array(
+    'post_type' => 'attachment',
+    'post_mime_type' => 'image',
+    'post_status' => 'publish',
+    'numberposts' => 32,
+    'orderby' => 'rand',
+        'tax_query' => array(
+                array(
+            'taxonomy'  => 'classification',
+            'field'     => 'slug',
+            'terms'     => 'items',
+            'operator'  => 'IN')
+            ),
+);  
+
+$attachments = get_posts($args_micro);
+$attachments_count = count($attachments);
+?>
+
+<div id="msnry-gallery-bottom">
+<?php 
+if ($attachments) {
+    foreach ($attachments as $attachment) {
+
+    $img = wp_get_attachment_thumb_url($attachment->ID);
+    $title = get_the_title($attachment->post_parent);
+    $attimg_micro = wp_get_attachment_image_src($attachment->ID,'microthumb');
+    $attimg_th = wp_get_attachment_image_src($attachment->ID,'thumbnail');
+    $attimg_medium = wp_get_attachment_image_src($attachment->ID,'medium');
+    $attimg_large = wp_get_attachment_image_src($attachment->ID,'large');
+    $attimg_full = wp_get_attachment_image_src($attachment->ID,'full');
+    $atturl = wp_get_attachment_url($attachment->ID);
+    $attlink = get_attachment_link($attachment->ID);
+    $atttitle = apply_filters('the_title',$attachment->post_title);
+    $attslug = sanitize_title($atttitle);
+    $parent_id = $attachment->post_parent;
+    $parent_title = get_the_title( $parent_id );
+    $parent_logo = get_the_post_thumbnail($parent_id, 'microthumb');
+    $parent_permalink = get_permalink( $parent_id );
+    $itemlink = $parent_permalink.'#'.$attslug.'-item-'.$attachment->ID;
+    ?>
+
+    <?php
+        echo '<a class="item-small small-3 medium-2 large-1" data-dropdown="img-'.$attachment->ID.'-infos" aria-controls="img-'.$attachment->ID.'-infos" aria-expanded="false" data-options="align:top">
+        <img id="item-'.$attachment->ID.'"
+          src="'.$attimg_micro[0].'"
+           alt="'.$parent_title.'" class="full" /></a>';
+        ?>
+        <ul id="<?php echo 'img-'.$attachment->ID.'-infos';?>" class="f-dropdown text-left" data-dropdown-content aria-hidden="true" tabindex="-1">
+        <li><a href="<?php echo $parent_permalink; ?>"><?php echo $parent_logo ?>&nbsp;<?php echo $parent_title; ?></a></li>
+        <li><a href="<?php echo $itemlink; ?>"><?php echo $atttitle; ?></a></li>    
+        </ul>
+    <?php } ?>  
+   
+<?php } ?>
+</div>
+
 </div>
 <div class="medium-3 large-3 columns">
 <h5>Parisian Gentleman Social Network</h5>
@@ -91,6 +167,7 @@ endwhile; ?>
             </ul>
 </div>	
 </footer>
+
 </div>
 <a class="exit-off-canvas"></a>
 

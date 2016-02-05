@@ -197,10 +197,13 @@
 }
 
 .padded {
-padding: rem-calc(40) rem-calc(20);
+padding: rem-calc(40);
 }
 .vert-padded {
-padding: rem-calc(40) 0;
+padding: rem-calc(80) 0;
+}
+.vert-marged {
+  margin: rem-calc(40) 0;
 }
 .wrapper.brand {
   min-height:100vh;
@@ -229,6 +232,26 @@ padding: rem-calc(40) 0;
 }
 .wrapper.row {
   max-width: 120em;
+}
+.bottom-centered {
+  position: absolute;
+  z-index: 10;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+}
+.bottom-right {
+  position: absolute;
+  z-index: 10;
+  bottom: 10%;
+  right: 0%;
+}
+.top-centered  {
+    position: absolute;
+    z-index: 100;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
 }
 .centered  {
     position: absolute;

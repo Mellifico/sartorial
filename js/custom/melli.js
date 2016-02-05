@@ -18,6 +18,14 @@ $('.slider-a').slick({
     dots: true,
   });
 
+$('.main-slider').slick({
+    autoplay: false,
+    fade: true,
+    arrows:true,
+    dots: false,
+
+  });
+
  $('.slider-for').slick({
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -69,6 +77,14 @@ $container_seals.imagesLoaded( function() {
   });
 });
 
+var $container_seals_mini = $('#seals-mini-wall').masonry();
+// layout Masonry again after all images have loaded
+$container_seals_mini.imagesLoaded( function() {
+  $container_seals.masonry({
+    itemSelector: '.seal-mini'
+  });
+});
+
 var $container_items = $('#msnry-a').masonry();
 // layout Masonry again after all images have loaded
 $container_items.imagesLoaded( function() {
@@ -108,9 +124,9 @@ $(document).foundation({
 
   active_class: 'active', // specify the class used for active sections
   threshold: 0, // how many pixels until the magellan bar sticks, 0 = auto
-  destination_threshold: 20, // pixels from the top of destination for it to be considered active
+  destination_threshold: 100, // pixels from the top of destination for it to be considered active
   throttle_delay: 50, // calculation throttling to increase framerate
-  fixed_top: 0, // top distance in pixels assigend to the fixed element on scroll
+  fixed_top: 55, // top distance in pixels assigend to the fixed element on scroll
   offset_by_height: true // whether to offset the destination by the expedition height. Usually you want this to be true, unless your expedition is on the side.
 }
 });

@@ -51,6 +51,7 @@
     </ul>
 <section class="top-bar-section">
 <ul class="left">
+
 <li><?php apply_filters( 'wpml_element_link', 540 ); ?></li>
 <li class="divider"></li>
 </ul>
@@ -86,6 +87,13 @@
 
 	</form>
 </li>
+<li><form action="<?php bloginfo('url'); ?>" method="get">
+<?php $pages_args =  array(
+			'show_option_none' => __( 'Pages', 'FoundationPress' ),
+			'orderby'          => 'name',
+		);?>
+   <?php wp_dropdown_pages($pages_args); ?>
+</form></li>
 <li><?php languages_list(); ?></li>
 </ul>
 </section>
